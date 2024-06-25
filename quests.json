@@ -385,5 +385,54 @@
         "V": {
             "Crystal Chest": 500
         }
+    },
+    "My Precious Gold": {
+        "I": {
+            "Gold Coin": 100
+        },
+        "II": {
+            "Gold Coin": 250
+        },
+        "III": {
+            "Gold Coin": 500
+        },
+        "IV": {
+            "Gold Coin": 1000
+        },
+        "V": {
+            "Gold Coin": 2500
+        }
+    },
+    "Secret Keeper": {
+        "I": {
+            "Ancient Rod": 1
+        },
+        "II": {
+            "Chicken Knife": 1
+        },
+        "III": {
+            "Cauldron": 1
+        },
+        "IV": {
+            "Rod of Anuket": 1
+        },
+        "V": {
+            "Drakes Dairy": 1
+        },
+        "VI": {
+            "Mystic Hat": 1
+        },
+        "VII": {
+            "Extreme Power Stone": 1
+        },
+        "VIII": {
+            "Ring of Death": 1
+        },
+        "IX": {
+            "Ring of Speed": 1
+        },
+        "X": {
+            "Scythe of Demeter": 1
+        }
     }
 }
