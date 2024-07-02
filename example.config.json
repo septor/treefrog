@@ -1,0 +1,18 @@
+{
+    "prefix": "!",
+    "ownerId": "",
+    "allowedChannels": {
+        "basecamp": [""],
+        "quests": [""],
+        "vault": [""],
+        "invalid": [""],
+        "resetcode": [""],
+        "success": [""],
+        "find": [""]
+
+    },
+    "userAccessLevels": {
+        "medium": [""],
+        "high": [""]
+    }
+}
