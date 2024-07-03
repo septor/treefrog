@@ -58,6 +58,14 @@ foreach ($values as $value) {
             echo json_encode(["error" => "Code not found: $value"]);
             exit;
         }
+    } elseif ($action == 'candidate') {
+        if (isset($data['codes'][$value])) {
+            $data['codes'][$value]['status'] = 'needs_verified';
+            $updated = true;
+        } else {
+            echo json_encode(["error" => "Code not found: $value"]);
+            exit;
+        }
     } elseif ($action == 'success') {
         if (isset($data['codes'][$value])) {
             $data['codes'][$value]['status'] = 'success';

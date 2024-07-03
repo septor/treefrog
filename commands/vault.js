@@ -2,7 +2,7 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const axios = require('axios');
 const qs = require('qs');
 const config = require('../config.json');
-const { canPostInChannel, canAccessCommand } = require('../functions');
+const { canPostInChannel, canAccessCommand, convertMilliseconds } = require('../functions');
 
 /*
 
@@ -92,9 +92,10 @@ module.exports = {
                 );
 
             const filter = i => i.user.id === message.author.id;
+            var codeTimeout = 30000 * Object.entries(codes).length;
 
             // give the user the number of codes they want, from the area of the list they want
-            let reply = `${userMention} here are your ${limit} codes, from ${location}:\n`;
+            let reply = `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`;
             for (const [code] of Object.entries(codes)) {
                 reply += `${code}\n`;
             }
@@ -103,7 +104,6 @@ module.exports = {
 
             // current timeout is 30 seconds per code given, for 10 codes that's 5 minutes
             //TODO: should this be a fixed amount, or should we increase/decrease the amount of time needed per code?
-            var codeTimeout = 30000 + codes.length;
             const collector = botMessage.createMessageComponentCollector({ filter, time: codeTimeout });
 
             collector.on('collect', async i => {
@@ -200,19 +200,57 @@ module.exports = {
                         }));
 
                         if (phpResonse.data.success) {
-                            await m.reply({ content: `I've noted that none of your codes worked.`});
+                            await message.reply({ content: `I've noted that none of your codes worked.`});
                         } else {
-                            await m.reply({ content: `Failed to update codes: ${phpResonse.data.error}`});
+                            await message.reply({ content: `Failed to update codes: ${phpResonse.data.error}`});
                         }
                     } catch (error) {
                         console.error('Error updating codes:', error);
-                        await m.reply({ content: 'An error occurred while updating the codes.'});
+                        await message.reply({ content: 'An error occurred while updating the codes.'});
                     }
                 }
 
                 if (i.customId === 'success') {
-                    //TODO: add in the ability to prompt the user for the correct code, once they do we need to set it as "needs_verified"
-                    await i.followUp({ content: `You responded with ${i.customId}.`});
+                    // if they've picked "I found the correct code!":
+                    // ask for the code that was correct, then, flag is as "needs_verified"
+                    // TODO: @mention someone to verify the code?
+                    await i.followUp({ content: 'Which code cracked the vault?!:'});
+
+                    const messageFilter = m => m.author.id === message.author.id;
+
+                    // currently gives them 1 entire minute to send back code is correct, should this be more/less/same?
+                    const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
+
+                    messageCollector.on('collect', async m => {
+                        try {
+                            const correctCode = [m.content];
+
+                            const phpResonse = await axios.post(updatepoint, qs.stringify({
+                                action: 'candidate',
+                                value: JSON.stringify(correctCode)
+                            }));
+
+                            if (phpResonse.data.success) {
+                                await m.reply({ content: `I've sent your code in for verification!`});
+                            } else {
+                                await m.reply({ content: `Failed to send your code in for verification codes: ${phpResonse.data.error}`});
+                            }
+                        } catch (error) {
+                            console.error('Error updating code:', error);
+                            await m.reply({ content: 'An error occurred while updating the code.'});
+                        }
+
+                        messageCollector.stop();
+                    });
+
+                    messageCollector.on('end', collected => {
+                        // this is where we handle actions if they don't reply in time
+                        //TODO: what do we do if they don't reply with successful code in time? ask again?
+                        if (collected.size === 0) {
+                            message.channel.send('No codes were provided within the time limit.');
+                        }
+                    });
+
                     collector.stop();
                 }
             });

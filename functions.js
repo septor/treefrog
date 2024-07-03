@@ -40,10 +40,30 @@ function isValidRomanNumeral(str) {
     return romanNumeralPattern.test(str);
 }
 
+function convertMilliseconds(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    let result = '';
+    if (minutes > 0) {
+        result += `${minutes} minute${minutes !== 1 ? 's' : ''}`;
+    }
+    if (seconds > 0) {
+        if (result) {
+            result += ' and ';
+        }
+        result += `${seconds} second${seconds !== 1 ? 's' : ''}`;
+    }
+
+    return result;
+}
+
 module.exports = {
     canPostInChannel,
     getUserAccessLevel,
     canAccessCommand,
     formatNumber,
     isValidRomanNumeral,
+    convertMilliseconds,
 };
