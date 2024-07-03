@@ -101,10 +101,10 @@ module.exports = {
 
             const botMessage = await message.channel.send({ content: reply, components: [row] });
 
-            // set up a message collector, timeout at 60 seconds
-            // if they don't reply within 60 seconds, it fails currently
-            //TODO: modify the time given per code hand out, possibly 20 seconds per code given?
-            const collector = botMessage.createMessageComponentCollector({ filter, time: 60000 });
+            // current timeout is 30 seconds per code given, for 10 codes that's 5 minutes
+            //TODO: should this be a fixed amount, or should we increase/decrease the amount of time needed per code?
+            var codeTimeout = 30000 + codes.length;
+            const collector = botMessage.createMessageComponentCollector({ filter, time: codeTimeout });
 
             collector.on('collect', async i => {
                 await i.deferUpdate();
@@ -119,7 +119,7 @@ module.exports = {
 
                     const messageFilter = m => m.author.id === message.author.id;
 
-                    //TODO: this gives them 60 seconds to respond with the codes they missed - is that too much?
+                    // currently gives them 1 entire minute to send back which code they've missed, should this be more/less/same?
                     const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
 
                     messageCollector.on('collect', async m => {
