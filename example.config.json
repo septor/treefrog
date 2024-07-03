@@ -3,12 +3,10 @@
     "ownerId": "",
     "allowedChannels": {
         "basecamp": [""],
+        "find": [""],
         "quests": [""],
-        "vault": [""],
-        "invalid": [""],
-        "resetcode": [""],
-        "success": [""],
-        "find": [""]
+        "setas": [""],
+        "vault": [""]
 
     },
     "userAccessLevels": {
