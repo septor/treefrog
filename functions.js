@@ -59,6 +59,13 @@ function convertMilliseconds(ms) {
     return result;
 }
 
+function firstLetterUppercase(word) {
+    const firstLetter = word.charAt(0)
+    const firstLetterCap = firstLetter.toUpperCase()
+    const remainingLetters = word.slice(1)
+    return firstLetterCap + remainingLetters
+}
+
 module.exports = {
     canPostInChannel,
     getUserAccessLevel,
@@ -66,4 +73,5 @@ module.exports = {
     formatNumber,
     isValidRomanNumeral,
     convertMilliseconds,
+    firstLetterUppercase,
 };

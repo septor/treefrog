@@ -59,8 +59,12 @@ module.exports = {
                 }));
 
                 if (phpResponse.data.success) {
-                    //TODO: IF `action` is 'success', send out a message notifing someone of importance so they can @everyone
-                    await m.reply({ content: 'The statuses have been updated.'});
+                    if(action == 'success') {
+                        //TODO: IF `action` is 'success', send out a message notifing someone of importance so they can @everyone
+                        await m.reply({ content: 'The statuses have been updated.'});
+                    } else {
+                        await m.reply({ content: 'The statuses have been updated.'});
+                    }
                 } else {
                     await m.reply({ content: `Failed to update codes: ${phpResponse.data.error}`});
                 }

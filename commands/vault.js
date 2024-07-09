@@ -95,6 +95,7 @@ module.exports = {
             var codeTimeout = 30000 * Object.entries(codes).length;
 
             // give the user the number of codes they want, from the area of the list they want
+            //TODO: possibly split the codes into their own message, allowing for quick copy/paste on mobile?
             let reply = `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`;
             for (const [code] of Object.entries(codes)) {
                 reply += `${code}\n`;
@@ -258,6 +259,10 @@ module.exports = {
             collector.on('end', collected => {
                 // this is where we handle actions if they don't reply in time
                 //TODO: what do we do if they don't reply to their provided codes in time?
+
+                // PROPOSED SOLUTION:
+                // re-message them after one hour per code, with a max of 12 hours
+                // POSSIBLE keep reminding them every hour afterwards
                 if (collected.size === 0) {
                     message.channel.send('No valid responses received within the time limit.');
                 }

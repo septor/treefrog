@@ -6,7 +6,8 @@
         "find": [""],
         "quests": [""],
         "setas": [""],
-        "vault": [""]
+        "vault": [""],
+        "viewq": [""]
 
     },
     "userAccessLevels": {

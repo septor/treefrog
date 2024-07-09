@@ -9,6 +9,31 @@ if (!file_exists($filename)) {
 }
 
 $data = json_decode(file_get_contents($filename), true);
+
+$action = isset($_POST['action']) ? $_POST['action'] : null;
+
+if ($action === 'viewq') {
+    $statusFilter = isset($_POST['status']) ? $_POST['status'] : null;
+
+    if ($statusFilter) {
+        $filteredCodes = array_filter($data['codes'], function($details) use ($statusFilter) {
+            return $details['status'] === $statusFilter;
+        });
+        $codes = array_keys($filteredCodes);
+    } else {
+        $needsVerified = array_filter($data['codes'], function($details) {
+            return $details['status'] === 'needs_verified';
+        });
+        $needsProcessed = array_filter($data['codes'], function($details) {
+            return $details['status'] === 'needs_processed';
+        });
+        $codes = array_merge(array_keys($needsVerified), array_keys($needsProcessed));
+    }
+
+    echo json_encode($codes);
+    exit;
+}
+
 $limit = isset($_POST['limit']) ? (int)$_POST['limit'] : 5;
 $credit = isset($_POST['credit']) ? $_POST['credit'] : null;
 $position = isset($_POST['position']) ? $_POST['position'] : 'top';
@@ -21,7 +46,6 @@ if ($credit === null) {
 $notCheckedCodes = array_filter($data['codes'], function($details) {
     return $details['status'] === 'not_checked' && $details['credit'] === '';
 });
-
 
 if($position == "bottom") {
     $codes = array_slice(array_keys($notCheckedCodes), -$limit, $limit, true);
