@@ -1,6 +1,7 @@
 {
     "prefix": "!",
     "ownerId": "",
+    "vaultAdminRole": "",
     "allowedChannels": {
         "basecamp": [""],
         "find": [""],

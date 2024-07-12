@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 const config = require('../config.json');
-const { canPostInChannel, canAccessCommand } = require('../functions');
+const { canPostInChannel, canAccessCommand, firstLetterUppercase } = require('../functions');
 
 module.exports = {
     name: 'viewq',
@@ -19,7 +19,13 @@ module.exports = {
                 .catch(error => console.error('Could not send DM to the user.', error));
         }
 
-        const status = args[0] || '';
+        const mappings = {
+            unprocessed: 'needs_processed',
+            unverified: 'needs_verified',
+        };
+
+        const userInput = args[0] ? args[0].toLowerCase() : '';
+        const status = mappings[userInput] || '';
         const endpoint = 'http://septor.xyz/cherrytree/fetch_codes.php';
 
         try {
@@ -35,7 +41,7 @@ module.exports = {
             }
 
             const codesList = codes.join('\n');
-            const reply = `${status || 'All'} codes that need managed:\n${codesList}`;
+            const reply = `${firstLetterUppercase(userInput) || 'All'} codes that need managed:\n${codesList}`;
 
             message.channel.send(reply);
         } catch (error) {
