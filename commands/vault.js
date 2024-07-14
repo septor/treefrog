@@ -4,24 +4,6 @@ const qs = require('qs');
 const config = require('../config.json');
 const { canPostInChannel, canAccessCommand, convertMilliseconds } = require('../functions');
 
-/*
-
-ORDER OF OPERATIONS:
-1: someone requests codes (with whatever options)
-2: codes are given, set a timer to expect their response (1 minute? 10 minutes? 1 hour?)
-    2a: if they don't respond, nag them to see what's up
-3: once they respond, act accordingly:
-4: no codes found: flag as "needs_processed"
-5: missed some codes: flag the captured ones as "needs_processed" - reset the non-done codes to "not_checked"
-6: success: flag the code as "needs_verified"
-
-TODO: work on a level system and implement it, everytime a code is processed correctly award the user points
-TODO: after so many points, skip the "needs_processed" step and automatically flag it as "invalid".
-
-flagging a code as "success" should ALWAYS need to be verified by at least one other person before setting the code
-
-*/
-
 module.exports = {
     name: 'vault',
     description: 'Fetch a specified number of codes or a specific code range',
@@ -93,8 +75,7 @@ module.exports = {
 
             const filter = i => i.user.id === message.author.id;
             var codeTimeout = 30000 * Object.entries(codes).length;
-
-            // give the user the number of codes they want, from the area of the list they want
+            
             //TODO: possibly split the codes into their own message, allowing for quick copy/paste on mobile?
             let reply = `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`;
             for (const [code] of Object.entries(codes)) {
@@ -112,10 +93,6 @@ module.exports = {
                 console.log(`Interaction collected with customId: ${i.customId}`);
 
                 if (i.customId === 'untested') {
-                    // if they select "I couldn't test all my codes!", we need to ask them which codes they couldn't do
-                    // IF they say "all", treat accordingly
-                    // otherwise, we take every code (split by a new line) and reset their status
-                    // all codes not mentioned then get flagged as "needs_processed"
                     await i.followUp({ content: 'Let me know which you missed (split them by new lines). If you missed them all, just reply "all":'});
 
                     const messageFilter = m => m.author.id === message.author.id;
@@ -190,7 +167,6 @@ module.exports = {
                 }
 
                 if(i.customId === "no") {
-                    // if they choose "None of these are correct." flag all the codes as "needs_processed"
                     //TODO: add in leveling system that will skip over them needing to be processed by someone
                     try {
                         const values = Object.keys(codes);
@@ -212,9 +188,6 @@ module.exports = {
                 }
 
                 if (i.customId === 'success') {
-                    // if they've picked "I found the correct code!":
-                    // ask for the code that was correct, then, flag is as "needs_verified"
-                    // TODO: @mention someone to verify the code?
                     await i.followUp({ content: 'Which code cracked the vault?!:'});
 
                     const messageFilter = m => m.author.id === message.author.id;
@@ -232,7 +205,7 @@ module.exports = {
                             }));
 
                             if (phpResonse.data.success) {
-                                await m.reply({ content: `I've sent your code in for verification!`});
+                                message.channel.send(`<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`)
                             } else {
                                 await m.reply({ content: `Failed to send your code in for verification codes: ${phpResonse.data.error}`});
                             }

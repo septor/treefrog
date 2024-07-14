@@ -60,8 +60,7 @@ module.exports = {
 
                 if (phpResponse.data.success) {
                     if(action == 'success') {
-                        //TODO: IF `action` is 'success', send out a message notifing someone of importance so they can @everyone
-                        await m.reply({ content: 'The statuses have been updated.'});
+                        message.channel.send(`<@&${config.vaultAdmin}> a successful code has been found and verified!`)
                     } else {
                         await m.reply({ content: 'The statuses have been updated.'});
                     }

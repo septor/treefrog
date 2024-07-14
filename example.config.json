@@ -1,10 +1,10 @@
 {
     "prefix": "!",
     "ownerId": "",
-    "vaultAdminRole": "",
+    "vaultManager": "",
+    "vaultAdmin": "",
     "allowedChannels": {
         "basecamp": [""],
-        "find": [""],
         "quests": [""],
         "setas": [""],
         "vault": [""],
