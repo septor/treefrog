@@ -21,11 +21,11 @@ module.exports = {
         }
 
         let level = null;
-        if (args.length > 1 && isValidRomanNumeral(args[args.length - 1])) {
+        if (args.length > 1 && isInteger(args[args.length - 1])) {
             level = args.pop();
         }
         
-        const questName = args.join(' ');
+        const questName = args.join(' ').toLowerCase();
 
         try {
             const response = await axios.get(url);
