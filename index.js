@@ -21,9 +21,8 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-
 client.once('ready', async () => {
-    console.log('Bot is online!');
+    console.log('Bot online as ${client.user.tag}!');
 
     setInterval(() => {
         checkForCodes(client);
@@ -65,7 +64,6 @@ client.on('messageCreate', async message => {
     const commandName = args.shift().toLowerCase();
 
     if (!client.commands.has(commandName)) return;
-
     const command = client.commands.get(commandName);
 
     try {

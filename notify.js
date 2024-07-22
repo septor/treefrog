@@ -16,7 +16,6 @@ async function checkForCodes(client) {
         }
 
         const usersToNotify = {};
-
         data.forEach(code => {
             if (code.credit) {
                 if (!usersToNotify[code.credit]) {

@@ -61,6 +61,14 @@ function firstLetterUppercase(word) {
     return firstLetterCap + remainingLetters
 }
 
+function isInteger(value) {
+    return /^\d+$/.test(value);
+}
+
+function toTitleCase(str) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 module.exports = {
     canPostInChannel,
     getUserAccessLevel,
@@ -68,4 +76,6 @@ module.exports = {
     formatNumber,
     convertMilliseconds,
     firstLetterUppercase,
+    isInteger,
+    toTitleCase,
 };

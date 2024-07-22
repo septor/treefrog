@@ -1,14 +1,6 @@
 const axios = require('axios');
 const config = require('../config.json');
-const { canPostInChannel, canAccessCommand } = require('../functions');
-
-function isInteger(value) {
-    return /^\d+$/.test(value);
-}
-
-function toTitleCase(str) {
-    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-}
+const { canPostInChannel, canAccessCommand, isInteger, toTitleCase } = require('../functions');
 
 module.exports = {
     name: 'quests',
