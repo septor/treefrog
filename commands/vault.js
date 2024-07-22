@@ -4,12 +4,13 @@ const qs = require('qs');
 const config = require('../config.json');
 const { canPostInChannel, canAccessCommand, convertMilliseconds } = require('../functions');
 
+//TODO: Leveling system. See here: https://github.com/septor/treefrog/issues/4
+
 module.exports = {
     name: 'vault',
     description: 'Fetch a specified number of codes or a specific code range',
     accessLevel: "low",
     async execute(message, args) {
-
         if (!canPostInChannel(this.name, message.channel.id)) {
             const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
             return message.author.send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
@@ -25,15 +26,27 @@ module.exports = {
         const position = args[1] || 'random';
         const gap = 5;
         const credit = message.author.username;
-        const params = new URLSearchParams();
-        params.append('limit', limit);
-        params.append('position', position);
-        params.append('credit', credit);
 
         const fetchpoint = 'http://septor.xyz/cherrytree/fetch_codes.php';
         const updatepoint = 'http://septor.xyz/cherrytree/update_code.php';
 
         try {
+
+            const checkCodesResponse = await axios.post(fetchpoint, qs.stringify({ action: 'checkusercodes', credit }));
+            const userCodes = checkCodesResponse.data || {};
+            const hasUncheckedCodes = userCodes.length > 0;
+
+            if (hasUncheckedCodes) {
+                //TODO: create a command that will send them all the codes they need to check in a DM.
+                return message.channel.send('You have unprocessed codes. Please check them before requesting more.')
+                    .catch(error => console.error('Could not send DM to the user.', error));
+            }
+
+            const params = new URLSearchParams();
+            params.append('limit', limit);
+            params.append('position', position);
+            params.append('credit', credit);
+
             const response = await axios.post(fetchpoint, params);
             const codes = response.data;
 
@@ -45,18 +58,13 @@ module.exports = {
                 return message.channel.send('No codes with status "not_checked" found.');
             }
 
-            let location = "";
+            const location = position === "random" 
+                ? "a random part of the list" 
+                : position === "shuffle" 
+                ? "random locations on the list" 
+                : `the ${position} of the list`;
 
-            if (position === "random") {
-                location = "a random part of the list";
-            } else if (position === "shuffle") {
-                location = "random locations on the list";
-            } else {
-                location = `the ${position} of the list`;
-            }
-
-            const mentionedUserId = message.author.id;
-            const userMention = `<@${mentionedUserId}>`;
+            const userMention = `<@${message.author.id}>`;
 
             const row = new ActionRowBuilder()
                 .addComponents(
@@ -74,160 +82,89 @@ module.exports = {
                         .setStyle(ButtonStyle.Success),
                 );
 
+            const reply = Object.keys(codes).reduce((acc, code, index) => {
+                const spacedCode = code.split('').join(' ');
+                return acc + (index % gap === 0 && index > 0 ? `\n` : '') + `${spacedCode}\n`;
+            }, '');
+
+            const botMessage = await message.channel.send({
+                content: `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(30000 * Object.keys(codes).length)} so we can keep things flowing!\n${reply.trimEnd()}`,
+                components: [row]
+            });
+
             const filter = i => i.user.id === message.author.id;
-            var codeTimeout = 30000 * Object.entries(codes).length;
-
-            message.channel.send(`${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`);
-            let reply = '';
-            let counter = 0;
-            for (const [code] of Object.entries(codes)) {
-                reply += `${code.split('').join(' ')}\n`;
-                counter++;
-            
-                if (counter % gap === 0) {
-                    reply += `\n`;
-                }
-            }
-            
-            reply = reply.trimEnd();
-            reply += '\n';
-
-            const botMessage = await message.channel.send({ content: reply, components: [row] });
-
-            // current timeout is 30 seconds per code given, for 10 codes that's 5 minutes
-            //TODO: should this be a fixed amount, or should we increase/decrease the amount of time needed per code?
-            const collector = botMessage.createMessageComponentCollector({ filter, time: codeTimeout });
+            const collector = botMessage.createMessageComponentCollector({ filter, time: 30000 * Object.keys(codes).length });
 
             collector.on('collect', async i => {
                 await i.deferUpdate();
-                console.log(`Interaction collected with customId: ${i.customId}`);
+
+                const handleResponseAction = async (action, codesList) => {
+                    try {
+                        const phpResponse = await axios.post(updatepoint, qs.stringify({ action, value: JSON.stringify(codesList) }));
+                        if (phpResponse.data.success) {
+                            await i.followUp({ content: action === 'reset' ? `I've reset all your codes!` : 'The statuses have been updated.' });
+                        } else {
+                            await i.followUp({ content: `Failed to update codes: ${phpResponse.data.error}` });
+                        }
+                    } catch (error) {
+                        await i.followUp({ content: 'An error occurred while updating the codes.' });
+                    }
+                };
 
                 if (i.customId === 'untested') {
-                    await i.followUp({ content: 'Let me know which you missed (split them by new lines). If you missed them all, just reply "all":'});
+                    await i.followUp({ content: 'Let me know which you missed (split them by new lines). If you missed them all, just reply "all":' });
 
                     const messageFilter = m => m.author.id === message.author.id;
                     const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
 
                     messageCollector.on('collect', async m => {
-                        if(m.content.toLowerCase().includes("all")) {
-                            try {
-                                const values = Object.keys(codes);
-
-                                const phpResonse = await axios.post(updatepoint, qs.stringify({
-                                    action: 'reset',
-                                    value: JSON.stringify(values)
-                                }));
-
-                                if (phpResonse.data.success) {
-                                    await m.reply({ content: `I've reset all your codes!`});
-                                } else {
-                                    await m.reply({ content: `Failed to update codes: ${phpResonse.data.error}`});
-                                }
-                            } catch (error) {
-                                console.error('Error updating codes:', error);
-                                await m.reply({ content: 'An error occurred while updating the codes.'});
-                            }
+                        if (m.content.toLowerCase().includes("all")) {
+                            await handleResponseAction('reset', Object.keys(userCodes));
                         } else {
-                            const missedCodes = m.content.split('\n').map(code => code.join(' ').trim());
-                            console.log(`Missed codes received: ${missedCodes}`);
-
-                            try {
-                                const values = Object.keys(codes);
-                                const leftoverCodes = values.filter(item => !missedCodes.includes(item));
-
-                                const phpResponseMissed = await axios.post(updatepoint, qs.stringify({
-                                    action: 'reset',
-                                    value: JSON.stringify(missedCodes)
-                                }));
-
-                                const phpResponseLeftover = await axios.post(updatepoint, qs.stringify({
-                                    action: 'flag',
-                                    value: JSON.stringify(leftoverCodes)
-                                }));
-
-                                if (phpResponseMissed.data.success && phpResponseLeftover.data.success) {
-                                    await m.reply({ content: 'The statuses have been updated.'});
-                                } else {
-                                    const errors = [
-                                        phpResponseMissed.data.error,
-                                        phpResponseLeftover.data.error
-                                    ].filter(error => error).join('; ');
-                                    await m.reply({ content: `Failed to update codes: ${errors}`});
-                                }
-                            } catch (error) {
-                                console.error('Error updating codes:', error);
-                                await m.reply({ content: 'An error occurred while updating the codes.'});
-                            }
+                            const missedCodes = m.content.split('\n').map(code => code.trim());
+                            const leftoverCodes = Object.keys(userCodes).filter(item => !missedCodes.includes(item));
+                            await handleResponseAction('reset', missedCodes);
+                            await handleResponseAction('flag', leftoverCodes);
                         }
-
                         messageCollector.stop();
                     });
 
                     messageCollector.on('end', collected => {
-                        // this is where we handle actions if they don't reply in time
-                        //TODO: what do we do if they don't reply with their missed codes in time? ask again?
                         if (collected.size === 0) {
                             message.channel.send(`No codes were provided within the time limit. Please get with a <@&${config.vaultManager}> to sort this out.`);
                         }
                     });
 
                     collector.stop();
-                }
-
-                if(i.customId === "no") {
-                    //TODO: add in leveling system that will skip over them needing to be processed by someone
-                    try {
-                        const values = Object.keys(codes);
-
-                        const phpResonse = await axios.post(updatepoint, qs.stringify({
-                            action: 'flag',
-                            value: JSON.stringify(values)
-                        }));
-
-                        if (phpResonse.data.success) {
-                            await message.reply({ content: `I've noted that none of your codes worked.`});
-                        } else {
-                            await message.reply({ content: `Failed to update codes: ${phpResonse.data.error}`});
-                        }
-                    } catch (error) {
-                        console.error('Error updating codes:', error);
-                        await message.reply({ content: 'An error occurred while updating the codes.'});
-                    }
-                }
-
-                if (i.customId === 'success') {
-                    await i.followUp({ content: 'Which code cracked the vault?!:'});
+                } else if (i.customId === 'no') {
+                    const values = Object.keys(codes);
+                    await handleResponseAction('flag', values);
+                    collector.stop();
+                } else if (i.customId === 'success') {
+                    await i.followUp({ content: 'Which code cracked the vault?!:' });
 
                     const messageFilter = m => m.author.id === message.author.id;
-
-                    // currently gives them 1 entire minute to send back code is correct, should this be more/less/same?
                     const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
 
                     messageCollector.on('collect', async m => {
                         try {
                             const correctCode = [m.content];
-
-                            const phpResonse = await axios.post(updatepoint, qs.stringify({
+                            const phpResponse = await axios.post(updatepoint, qs.stringify({
                                 action: 'candidate',
                                 value: JSON.stringify(correctCode)
                             }));
-
-                            if (phpResonse.data.success) {
-                                message.channel.send(`<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`)
+                            if (phpResponse.data.success) {
+                                message.channel.send(`<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`);
                             } else {
-                                await m.reply({ content: `Failed to send your code in for verification codes: ${phpResonse.data.error}`});
+                                await m.reply({ content: `Failed to send your code in for verification codes: ${phpResponse.data.error}` });
                             }
                         } catch (error) {
-                            console.error('Error updating code:', error);
-                            await m.reply({ content: 'An error occurred while updating the code.'});
+                            await m.reply({ content: 'An error occurred while updating the code.' });
                         }
-
                         messageCollector.stop();
                     });
 
                     messageCollector.on('end', collected => {
-                        // this is where we handle actions if they don't reply in time
-                        //TODO: what do we do if they don't reply with successful code in time? ask again?
                         if (collected.size === 0) {
                             message.channel.send(`${userMention} please message any <@&${config.vaultManager}> so we can get this sorted, when you get a chance.`);
                         }
@@ -244,7 +181,6 @@ module.exports = {
             });
 
         } catch (error) {
-            console.error('Error fetching or processing data:', error);
             message.channel.send('Failed to fetch codes.');
         }
     },

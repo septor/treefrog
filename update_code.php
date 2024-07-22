@@ -87,4 +87,3 @@ if ($updated) {
 } else {
     echo json_encode(["error" => "No codes updated"]);
 }
-?>
