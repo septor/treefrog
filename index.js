@@ -22,7 +22,7 @@ for (const file of commandFiles) {
 }
 
 
-client.once('ready', () => {
+client.once('ready', async () => {
     console.log('Bot is online!');
 
     setInterval(() => {
@@ -32,10 +32,24 @@ client.once('ready', () => {
     const restartPath = path.join(__dirname, 'restart.json');
     if (fs.existsSync(restartPath)) {
         const restartData = JSON.parse(fs.readFileSync(restartPath, 'utf8'));
-        const channel = client.channels.cache.get(restartData.channelId);
 
-        if (channel) {
-            channel.send("I'm back!").catch(console.error);
+        try {
+            const channel = await client.channels.fetch(restartData.channelId);
+            if (channel) {
+                const restartMessage = await channel.messages.fetch(restartData.messageId).catch(err => {
+                    console.error('Error fetching restart message:', err);
+                });
+
+                if (restartMessage && restartMessage.react) {
+                    await restartMessage.react('✅');
+                } else {
+                    console.error('Restart message not found or react method is not available');
+                }
+            } else {
+                console.error('Channel not found');
+            }
+        } catch (error) {
+            console.error('Error processing restart:', error);
         }
 
         fs.unlinkSync(restartPath);
