@@ -1,6 +1,14 @@
 const axios = require('axios');
 const config = require('../config.json');
-const { canPostInChannel, canAccessCommand, isValidRomanNumeral } = require('../functions');
+const { canPostInChannel, canAccessCommand } = require('../functions');
+
+function isInteger(value) {
+    return /^\d+$/.test(value);
+}
+
+function toTitleCase(str) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
 
 module.exports = {
     name: 'quests',
@@ -28,26 +36,30 @@ module.exports = {
         const questName = args.join(' ').toLowerCase();
 
         try {
+            console.log(questName);
             const response = await axios.get(url);
             const quests = response.data;
 
             if (!quests[questName]) {
-                return message.channel.send(`Quest "${questName}" not found.`);
+                const displayName = toTitleCase(questName);
+                return message.channel.send(`Quest "${displayName}" not found.`);
             }
+
+            const displayName = toTitleCase(questName);
 
             if (level) {
                 const questLevelData = quests[questName][level];
                 if (!questLevelData) {
-                    return message.channel.send(`Level "${level}" not found for quest "${questName}".`);
+                    return message.channel.send(`Level "${level}" not found for quest "${displayName}".`);
                 }
                 
-                let resultMessage = `**${questName} ${level}**\n`;
+                let resultMessage = `**${displayName} ${level}**\n`;
                 for (const [material, amount] of Object.entries(questLevelData)) {
                     resultMessage += `\t${material}: ${amount}\n`;
                 }
                 message.channel.send(resultMessage);
             } else {
-                let resultMessage = `**${questName}**\n`;
+                let resultMessage = `**${displayName}**\n`;
                 for (const [lvl, materials] of Object.entries(quests[questName])) {
                     resultMessage += `**\t${lvl}**\n`;
                     for (const [material, amount] of Object.entries(materials)) {

@@ -22,7 +22,7 @@ module.exports = {
         }
 
         const limit = args[0] || 5;
-        const position = args[1] || 'top';
+        const position = args[1] || 'random';
         const credit = message.author.username;
         const params = new URLSearchParams();
         params.append('limit', limit);
@@ -78,9 +78,19 @@ module.exports = {
             
             //TODO: possibly split the codes into their own message, allowing for quick copy/paste on mobile?
             let reply = `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`;
+
+            let counter = 0;
             for (const [code] of Object.entries(codes)) {
                 reply += `${code}\n`;
+                counter++;
+            
+                if (counter % 5 === 0) {
+                    reply += `\n`;
+                }
             }
+            
+            reply = reply.trimEnd();
+            reply += '\n';
 
             const botMessage = await message.channel.send({ content: reply, components: [row] });
 
@@ -159,7 +169,7 @@ module.exports = {
                         // this is where we handle actions if they don't reply in time
                         //TODO: what do we do if they don't reply with their missed codes in time? ask again?
                         if (collected.size === 0) {
-                            message.channel.send('No codes were provided within the time limit.');
+                            message.channel.send(`No codes were provided within the time limit. Please get with a <@&${config.vaultManager}> to sort this out.`);
                         }
                     });
 
@@ -221,7 +231,7 @@ module.exports = {
                         // this is where we handle actions if they don't reply in time
                         //TODO: what do we do if they don't reply with successful code in time? ask again?
                         if (collected.size === 0) {
-                            message.channel.send('No codes were provided within the time limit.');
+                            message.channel.send(`${userMention} please message any <@&${config.vaultManager}> so we can get this sorted, when you get a chance.`);
                         }
                     });
 
@@ -230,14 +240,8 @@ module.exports = {
             });
 
             collector.on('end', collected => {
-                // this is where we handle actions if they don't reply in time
-                //TODO: what do we do if they don't reply to their provided codes in time?
-
-                // PROPOSED SOLUTION:
-                // re-message them after one hour per code, with a max of 12 hours
-                // POSSIBLE keep reminding them every hour afterwards
                 if (collected.size === 0) {
-                    message.channel.send('No valid responses received within the time limit.');
+                    message.channel.send(`${userMention} I assume you still haven't checked the codes. Please let me know when you do by initiating the \`!checked\` command.`);
                 }
             });
 

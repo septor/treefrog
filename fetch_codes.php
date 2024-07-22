@@ -34,6 +34,23 @@ if ($action === 'viewq') {
     exit;
 }
 
+if ($action === "codecheck") {
+    $statusFilter = isset($_POST['status']) ? $_POST['status'] : null;
+    
+    if ($statusFilter) {
+        $filteredCodes = array_filter($data['codes'], function($details) use ($statusFilter) {
+            return $details['status'] === $statusFilter && !empty($details['credit']);
+        });
+        $codes = array_keys($filteredCodes);
+        $response = [];
+        foreach ($codes as $code) {
+            $response[] = ['code' => $code, 'credit' => $data['codes'][$code]['credit']];
+        }
+        echo json_encode($response);
+        exit;
+    }
+}
+
 $limit = isset($_POST['limit']) ? (int)$_POST['limit'] : 5;
 $credit = isset($_POST['credit']) ? $_POST['credit'] : null;
 $position = isset($_POST['position']) ? $_POST['position'] : 'top';

@@ -3,6 +3,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
+const { checkForCodes } = require('./notify');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -20,8 +21,13 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+
 client.once('ready', () => {
     console.log('Bot is online!');
+
+    setInterval(() => {
+        checkForCodes(client);
+    }, 3600000);
 
     const restartPath = path.join(__dirname, 'restart.json');
     if (fs.existsSync(restartPath)) {

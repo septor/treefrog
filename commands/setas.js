@@ -60,7 +60,7 @@ module.exports = {
 
                 if (phpResponse.data.success) {
                     if(action == 'success') {
-                        message.channel.send(`<@&${config.vaultAdmin}> a successful code has been found and verified!`)
+                        message.channel.send(`<@&${config.vaultManager}> a successful code has been found and verified!`)
                     } else {
                         await m.reply({ content: 'The statuses have been updated.'});
                     }

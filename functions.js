@@ -35,11 +35,6 @@ function formatNumber(number) {
     return formattedNumber.toFixed(0) + suffix;
 }
 
-function isValidRomanNumeral(str) {
-    const romanNumeralPattern = /^(I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII|XVIII|XIX|XX)$/;
-    return romanNumeralPattern.test(str);
-}
-
 function convertMilliseconds(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -71,7 +66,6 @@ module.exports = {
     getUserAccessLevel,
     canAccessCommand,
     formatNumber,
-    isValidRomanNumeral,
     convertMilliseconds,
     firstLetterUppercase,
 };
