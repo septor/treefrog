@@ -6,18 +6,20 @@ discord.js bot written for the CherryTree Discord Community
 
 You need to do the following:
 
-1. Head to the [Discord Developers Portal](https://discord.com/developers) and create a new bot.
-2. Rename `example.config.json` into `config.json` and update the values. `allowedChannels` expects channel IDs. `userAccessLevels` expects user IDs. Default user level is `low`, which does not need to be set.
-3. Take the TOKEN (found under the Bot category) you are given while creating your bot and place it inside a `.env` file: `TOKEN:YOURTOKENHERE`.
-4. You need `Read Messages History`, `Send Messages`, and possibly `Send Messages in Threads` permissions.
-5. Open the directory in a terminal and type `npm init`.
-6. Install all the needed pacakges: `npm install`.
-7. To start the bot, I recommend setting up `pm2`, but that's up to you. You can use `npm start .` otherwise.
-
-See below if you want to contribute to the progress of the bot going forward.
+* [Join my dumb Discord server.](https://discord.gg/fFbf5wbD4D)
+* Let me know who you are from the CherryTree server, unless it's obvious.
+* Promise to try and break things.
+* Promise to give me ideas on how to make things better.
 
 ## I want to contribute!
+
+* Clone the repo, fix or include new things (one item at a time, please).
+* Submit a pull request. If you close an issue, please indicate it.
 
 Primary focus is the `!vault` command. Let me know on Discord if you're working on something!
 
 You can also check out the [issues section](https://github.com/septor/treefrog/issues).
+
+## I don't code, how can I help with data!
+
+Glad you asked! With the commit that change the README file, I've added an `items.json` file! This will be used for commands down the road, and possibly even sites like [CherryQuick](https://septor.xyz/cherryquick/). I need help filling in the data. The `id` field there is the ID found on the Wiki. I have some data added already, but it's a long process that takes away from other development.

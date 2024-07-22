@@ -1,0 +1,2876 @@
+{
+    "akomeric": {
+        "info": "",
+        "drops": "",
+        "id": "0",
+        "droprate": ""
+    },
+    "alchemy cape": {
+        "info": "Create 2 potions instead of 1.",
+        "drops": "",
+        "id": "1",
+        "droprate": ""
+    },
+    "amonyte": {
+        "info": "",
+        "drops": "",
+        "id": "2",
+        "droprate": ""
+    },
+    "anchor": {
+        "info": "",
+        "drops": "",
+        "id": "3",
+        "droprate": ""
+    },
+    "ancient dagger": {
+        "info": "",
+        "drops": "",
+        "id": "296",
+        "droprate": ""
+    },
+    "ancient elven book": {
+        "info": "",
+        "drops": "Found by killing Elven Queen.",
+        "id": "465",
+        "droprate": ""
+    },
+    "ancient rod": {
+        "info": "",
+        "drops": "Dropped by Goblin King. Fished up in City River.",
+        "id": "4",
+        "droprate": ""
+    },
+    "apple": {
+        "info": "",
+        "drops": "",
+        "id": "5",
+        "droprate": ""
+    },
+    "apple seed": {
+        "info": "",
+        "drops": "",
+        "id": "6",
+        "droprate": ""
+    },
+    "ash log": {
+        "info": "",
+        "drops": "",
+        "id": "381",
+        "droprate": ""
+    },
+    "ash seed": {
+        "info": "",
+        "drops": "",
+        "id": "404",
+        "droprate": ""
+    },
+    "attack cape": {
+        "info": "",
+        "drops": "",
+        "id": "7",
+        "droprate": ""
+    },
+    "attack potion": {
+        "info": "",
+        "drops": "Alchemy recipe: 1 Empty Vial, 1 Akomeric, 1 Birds Nest.",
+        "id": "8",
+        "droprate": ""
+    },
+    "bacon": {
+        "info": "",
+        "drops": "",
+        "id": "9",
+        "droprate": ""
+    },
+    "bag of flour": {
+        "info": "",
+        "drops": "",
+        "id": "317",
+        "droprate": ""
+    },
+    "bag of pearls": {
+        "info": "",
+        "drops": "",
+        "id": "10",
+        "droprate": ""
+    },
+    "bananas": {
+        "info": "",
+        "drops": "",
+        "id": "11",
+        "droprate": ""
+    },
+    "barbarian boots": {
+        "info": "",
+        "drops": "",
+        "id": "12",
+        "droprate": ""
+    },
+    "barbarian cape": {
+        "info": "",
+        "drops": "",
+        "id": "13",
+        "droprate": ""
+    },
+    "barbarian gloves": {
+        "info": "",
+        "drops": "",
+        "id": "14",
+        "droprate": ""
+    },
+    "barbarian greaves": {
+        "info": "",
+        "drops": "",
+        "id": "15",
+        "droprate": ""
+    },
+    "barbarian helm": {
+        "info": "",
+        "drops": "",
+        "id": "16",
+        "droprate": ""
+    },
+    "barbarian top": {
+        "info": "",
+        "drops": "",
+        "id": "17",
+        "droprate": ""
+    },
+    "barrel": {
+        "info": "",
+        "drops": "",
+        "id": "18",
+        "droprate": ""
+    },
+    "beach shirt": {
+        "info": "",
+        "drops": "",
+        "id": "472",
+        "droprate": ""
+    },
+    "beach shorts": {
+        "info": "",
+        "drops": "",
+        "id": "473",
+        "droprate": ""
+    },
+    "bestiary": {
+        "info": "",
+        "drops": "",
+        "id": "19",
+        "droprate": ""
+    },
+    "big dragon bones": {
+        "info": "",
+        "drops": "",
+        "id": "415",
+        "droprate": ""
+    },
+    "bikini bottoms": {
+        "info": "",
+        "drops": "",
+        "id": "474",
+        "droprate": ""
+    },
+    "bikini top": {
+        "info": "",
+        "drops": "",
+        "id": "475",
+        "droprate": ""
+    },
+    "birch log": {
+        "info": "",
+        "drops": "",
+        "id": "378",
+        "droprate": ""
+    },
+    "birch seed": {
+        "info": "",
+        "drops": "",
+        "id": "407",
+        "droprate": ""
+    },
+    "birds nest": {
+        "info": "",
+        "drops": "",
+        "id": "20",
+        "droprate": ""
+    },
+    "bloodroot": {
+        "info": "",
+        "drops": "",
+        "id": "21",
+        "droprate": ""
+    },
+    "blue buttons": {
+        "info": "",
+        "drops": "",
+        "id": "22",
+        "droprate": ""
+    },
+    "blue crab": {
+        "info": "",
+        "drops": "",
+        "id": "23",
+        "droprate": ""
+    },
+    "blue feather": {
+        "info": "",
+        "drops": "",
+        "id": "24",
+        "droprate": ""
+    },
+    "blue shrimp": {
+        "info": "",
+        "drops": "",
+        "id": "25",
+        "droprate": ""
+    },
+    "blue silk": {
+        "info": "",
+        "drops": "",
+        "id": "26",
+        "droprate": ""
+    },
+    "blue thread": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "blueberry": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "blueberry seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "blueprints": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "board": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "bone stew": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "bones": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "book of aroon": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "book of death": {
+        "info": "",
+        "drops": "Found by killing Elven Archers.",
+        "id": "",
+        "droprate": ""
+    },
+    "book of necromancy": {
+        "info": "",
+        "drops": "Found by killing Elven King.",
+        "id": "",
+        "droprate": ""
+    },
+    "bunny ears": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt bone stew": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt carp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt catfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt cheese": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt cherry pie": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt clownfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt crab": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt crab soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt dragon platter": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt fish soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt fish steak": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt fish wedge": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt fruit salad": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt jellyfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt lobster": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt marlin": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt minnows": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt mushroom soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt octopus": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt perch": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt pufferfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt ray": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt shark": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt shrimp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt snail": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "burnt squid": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "candle": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "candy cane": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "carp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "carving knife": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "casket of treasure": {
+        "info": "",
+        "drops": "",
+        "id": "498",
+        "droprate": ""
+    },
+    "catfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cauldron": {
+        "info": "",
+        "drops": "Dropped by Jin. Found while making Super Defence Potions.",
+        "id": "",
+        "droprate": "1:6600"
+    },
+    "cedar log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cedar seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "challenger boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "challenger gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "challenger hat": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "challenger legs": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "challenger top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cheese": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "chefs hat": {
+        "info": "",
+        "drops": "Thieving from the Cook with Cooking skill cape equipped.",
+        "id": "495",
+        "droprate": ""
+    },
+    "cherries": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cherries seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cherry blossom log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cherry blossom seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cherry pie": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "chestnut log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "chestnut seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "chicken knife": {
+        "info": "",
+        "drops": "Killing Chickens or Elite Chickens. Found in Farm Chests.",
+        "id": "",
+        "droprate": ""
+    },
+    "christmas jumper": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "clownfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cog": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "coin purse": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "coins": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "common chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "common key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "compass": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "completion cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cooking cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crab": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crab soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crafting cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crate": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crown of the invested": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crystal chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "crystal key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "cyclone potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dagger fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dagger of demeter": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "defence cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "defence potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "diary": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "discovery cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon bones": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon leather": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon ore": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon plate": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon platter": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon rider boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon rider gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon rider greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon rider helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon rider top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon scimitar": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon skull": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon tail": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "dragon wing battleaxe": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "drakes compass": {
+        "info": "",
+        "drops": "Found while crafting Satchels while wearing Leather Gloves and drinking REGULAR Luck Potions.",
+        "id": "",
+        "droprate": "1:64k"
+    },
+    "drakes diary": {
+        "info": "",
+        "drops": "Found while crafting Satchels while wearing Leather Gloves and not drinking the correct potion.",
+        "id": "",
+        "droprate": "1:64k"
+    },
+    "drakes ring": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "drumstick": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "eagles nest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "egg": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "eggplant": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "eggplant seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "elder log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "elder seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ember fern": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "emerald": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "empty vial": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "energy potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "eucalyptus log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "eucalyptus seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "evergreen log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "evergreen seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme attack potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme defence potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme energy potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme health potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme luck potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme power potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "extreme power stone": {
+        "info": "",
+        "drops": "Crafting. Completing Vein Slayer Tasks. Found in Kings Chests.",
+        "id": "",
+        "droprate": "1:2500"
+    },
+    "extreme strength potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farm chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farm key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farming cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour legs": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "farmour top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "feathers": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fir log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fir seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fish hook": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fish soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fish steak": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fish wedge": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fishing cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fishing net": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "fishing potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "flame gloves": {
+        "info": "",
+        "drops": "Discovery in Wastland Valcano",
+        "id": "496",
+        "droprate": "1:500k"
+    },
+    "fruit salad": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ginkgo log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ginkgo seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gnome boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gnome shorts": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "goblin cleaver": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gold bar": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gold coin": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gold feather": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gold ore": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "gold ring": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "golden necklace": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "golden scarab": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "golden touch potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "grapes": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "grapes seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "hammer": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "hatchet of the gods": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "health cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "health potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "hide": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "honey": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "hourglass": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "hyssop": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "insta kill potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "invincibility potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron battleaxe": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron ore": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron shield": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "iron top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "jawbone": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "jellyfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings armour fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "kings weapon fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "large exp scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "large fishing net": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather bag": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "leather top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "lemon": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "lemon seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "lightning potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "liquid death potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "lobster": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "locker key": {
+        "info": "",
+        "drops": "Not currently in game.",
+        "id": "",
+        "droprate": ""
+    },
+    "luck potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "magic watering can": {
+        "info": "",
+        "drops": "Killing Elite Chickens while wearing full Leather Armor.",
+        "id": "",
+        "droprate": "1:125k"
+    },
+    "magnolia log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "magnolia seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mahogany log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mahogany seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "maple log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "maple seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "marlin": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "massive exp scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "max cape": {
+        "info": "",
+        "drops": "You can buy this from the Market Trader for 13m coins when you are fully maxed (f2p & premium skills to level 99).",
+        "id": "144",
+        "droprate": ""
+    },
+    "medium exp scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "message in a bottle": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "milk": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mini exp scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mini max cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mining cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mining potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "minnows": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril axe": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril bar": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril ore": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril shield": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mithril top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "molten glass": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mushroom": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mushroom soup": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery cloak": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery egg": {
+        "info": "",
+        "drops": "Dropped by Phoenix. Discovered in Island Oasis.",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery hood": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystery top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "mystic boots": {
+        "info": "",
+        "drops": "Fished up in Livingstone Island.",
+        "id": "",
+        "droprate": "1:15k"
+    },
+    "mystic bottoms": {
+        "info": "",
+        "drops": "Found while cooking Fish Wedges.",
+        "id": "",
+        "droprate": "1:20k"
+    },
+    "mystic dagger": {
+        "info": "",
+        "drops": "Completing Lumen Slayer Tasks. Found in Kings Chests.",
+        "id": "",
+        "droprate": "1:2500"
+    },
+    "mystic gloves": {
+        "info": "",
+        "drops": "Found while brewing Thieving Potions.",
+        "id": "",
+        "droprate": "1:15k"
+    },
+    "mystic hat": {
+        "info": "",
+        "drops": "Dropped by Pig.",
+        "id": "",
+        "droprate": "1:15k"
+    },
+    "mystic robe": {
+        "info": "",
+        "drops": "Round while crafting Dragon Rider Tops.",
+        "id": "",
+        "droprate": "1:125k"
+    },
+    "mystic staff": {
+        "info": "",
+        "drops": "Killing sheep while Ultimaxed (all 99s and 130s) while chopping Ginkgo Trees.",
+        "id": "",
+        "droprate": "1:900k"
+    },
+    "nails": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necklace of attack": {
+        "info": "",
+        "drops": "During combat while in Attack stance.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "necklace of defence": {
+        "info": "",
+        "drops": "During combat while in Defense stance.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "necklace of health": {
+        "info": "",
+        "drops": "Fished up in Beach Pier.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "necklace of restoration": {
+        "info": "",
+        "drops": "Crafted with Restoration Fragments.",
+        "id": "",
+        "droprate": ""
+    },
+    "necklace of strength": {
+        "info": "",
+        "drops": "During combat while in Strength stance.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "necromancer boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necromancer cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necromancer gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necromancer greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necromancer helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "necromancer top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "nefrit chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "nefrit key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "notebook": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "oak": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "oak log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "oak seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "octopus": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "old boot": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "orange": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "orange seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "pearl": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "perch": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "pickaxe of the gods": {
+        "info": "",
+        "drops": "Found while mining emeralds with Mining skill cape equipped.",
+        "id": "",
+        "droprate": ""
+    },
+    "pine log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "pine seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "pirates hat": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "poison potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "pot of gold": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "potato sack": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "power potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "power stone": {
+        "info": "",
+        "drops": "Found while brewing Power Potions. Found in Kings Chests.",
+        "id": "",
+        "droprate": "1:2000"
+    },
+    "pufferfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens armour fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "queens weapon fragment": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "rabbits foot": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raft": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ram skull": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw carp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw catfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw clownfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw crab": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw jellyfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw lobster": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw marlin": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw minnows": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw octopus": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw perch": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw pufferfish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw ray": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw shark": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw shrimp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw snail": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "raw squid": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ray": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "red chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "red key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "red onion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "red onion seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "redwood log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "redwood seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "regeneration potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "restoration fragment 1": {
+        "info": "",
+        "drops": "Dropped by Water Dragon.",
+        "id": "",
+        "droprate": "1:30k"
+    },
+    "restoration fragment 2": {
+        "info": "",
+        "drops": "Harvesting Cherry.",
+        "id": "",
+        "droprate": "1:30k"
+    },
+    "restoration fragment 3": {
+        "info": "",
+        "drops": "Discovered in Mount Desmond.",
+        "id": "",
+        "droprate": "1:30k"
+    },
+    "restoration fragment 4": {
+        "info": "",
+        "drops": "Chopping Elder Trees.",
+        "id": "",
+        "droprate": "1:30k"
+    },
+    "restoration fragment 5": {
+        "info": "",
+        "drops": "Burning Chestnut Logs.",
+        "id": "",
+        "droprate": "1:30k"
+    },
+    "ring fragments": {
+        "info": "",
+        "drops": "Crafting any item.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "ring of anuket": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of death": {
+        "info": "",
+        "drops": "Cooking Dragon Platters.",
+        "id": "",
+        "droprate": "1:40k"
+    },
+    "ring of demeter": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of extreme power": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of forestry": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of life": {
+        "info": "",
+        "drops": "Dropped by Elite Pig.",
+        "id": "",
+        "droprate": "1:50k"
+    },
+    "ring of power": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of renewal": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ring of speed": {
+        "info": "",
+        "drops": "Dropped by Orc King",
+        "id": "",
+        "droprate": "1:20k"
+    },
+    "ring of super power": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "rock skin potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "rod of anuket": {
+        "info": "",
+        "drops": "Fished up in The Cave.",
+        "id": "",
+        "droprate": ""
+    },
+    "rope": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ruby": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "safflower": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "sage leaf": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "sandstone": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "santa hat": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "sapphire": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "satchel": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "scarf": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "scimitar of hearts": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "scissors": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "scythe of demeter": {
+        "info": "",
+        "drops": "Found while harvesting any crop. High crop levels means a higher chance.",
+        "id": "",
+        "droprate": "1:206k (average)"
+    },
+    "sea scorpion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "sextant": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "shark": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "shell": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "shrimp": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "silver ore": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "skeleton fish": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer master boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer master gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer master greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer master helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "slayer master top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "small exp scroll": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "snail": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "spiked chest": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "spiked key": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "spiked shield": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "spruce log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "spruce seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "squid": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steak": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel bar": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel boots": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel greaves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel helm": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel knives": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel shield": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "steel top": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "stone": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "stone block": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "stone tablet": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "strawberry": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "strawberry seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "strength cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "strength potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "sunburst flower": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super attack potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super defence potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super energy potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super fishing potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super health potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super luck potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super power potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super power stone": {
+        "info": "",
+        "drops": "Dropped by Ghost. Crafting. Found in Kings Chests.",
+        "id": "",
+        "droprate": "1:20k"
+    },
+    "super regeneration potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "super strength potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "supporters crown": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "tentacle": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "thieving cape": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "thieving gloves": {
+        "info": "",
+        "drops": "Found while Farming Elder seeds.",
+        "id": "",
+        "droprate": ""
+    },
+    "thieving potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "thread": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "thunderstorm potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "tomato": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "tomato seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "tooth necklace": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treasure map": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treasure scroll": {
+        "info": "",
+        "drops": "",
+        "id": "497",
+        "droprate": ""
+    },
+    "treestone of mind": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treestone of power": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treestone of reality": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treestone of soul": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treestone of space": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "treestone of time": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "trident of the seas": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "ultimate power potion": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "vains flail": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "vains gloves": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "vains sword": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "vissinel": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "waterskin": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "willow log": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "willow seed": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "wine": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "wolfmint": {
+        "info": "",
+        "drops": "Dropped by: Giant Cave Spider, Fluffy, Spider Queen. Pickpocketing: Traveller. Discovery: Mystery Island, The Other Side. Chests: Nefrit.",
+        "id": "281",
+        "droprate": ""
+    },
+    "wood": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "wooden plank": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "wooden shield": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "wool": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "workbench": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    },
+    "yarn": {
+        "info": "",
+        "drops": "",
+        "id": "",
+        "droprate": ""
+    }
+}
