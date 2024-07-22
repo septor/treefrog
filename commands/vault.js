@@ -23,6 +23,7 @@ module.exports = {
 
         const limit = args[0] || 5;
         const position = args[1] || 'random';
+        const gap = 5;
         const credit = message.author.username;
         const params = new URLSearchParams();
         params.append('limit', limit);
@@ -75,16 +76,15 @@ module.exports = {
 
             const filter = i => i.user.id === message.author.id;
             var codeTimeout = 30000 * Object.entries(codes).length;
-            
-            //TODO: possibly split the codes into their own message, allowing for quick copy/paste on mobile?
-            let reply = `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`;
 
+            message.channel.send(`${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(codeTimeout)} so we can keep things flowing!\n`);
+            let reply = '';
             let counter = 0;
             for (const [code] of Object.entries(codes)) {
-                reply += `${code}\n`;
+                reply += `${code.split('').join(' ')}\n`;
                 counter++;
             
-                if (counter % 5 === 0) {
+                if (counter % gap === 0) {
                     reply += `\n`;
                 }
             }
@@ -106,8 +106,6 @@ module.exports = {
                     await i.followUp({ content: 'Let me know which you missed (split them by new lines). If you missed them all, just reply "all":'});
 
                     const messageFilter = m => m.author.id === message.author.id;
-
-                    // currently gives them 1 entire minute to send back which code they've missed, should this be more/less/same?
                     const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
 
                     messageCollector.on('collect', async m => {
@@ -130,7 +128,7 @@ module.exports = {
                                 await m.reply({ content: 'An error occurred while updating the codes.'});
                             }
                         } else {
-                            const missedCodes = m.content.split('\n').map(code => code.trim());
+                            const missedCodes = m.content.split('\n').map(code => code.join(' ').trim());
                             console.log(`Missed codes received: ${missedCodes}`);
 
                             try {

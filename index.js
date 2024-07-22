@@ -22,7 +22,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', async () => {
-    console.log('Bot online as ${client.user.tag}!');
+    console.log(`Bot online as ${client.user.tag}!`);
 
     setInterval(() => {
         checkForCodes(client);
