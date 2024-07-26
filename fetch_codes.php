@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 header('Content-Type: application/json');
 
 $filename = './vault/src/data.json'; // NOTE: this is pointing to a dummy copy of the actual file that will be used
