@@ -16,14 +16,19 @@ async function checkForCodes(client) {
         }
 
         const usersToNotify = {};
-        data.forEach(code => {
-            if (code.credit) {
-                if (!usersToNotify[code.credit]) {
-                    usersToNotify[code.credit] = [];
+        if (typeof data === 'object' && !Array.isArray(data)) {
+            for (const [codeId, codeDetails] of Object.entries(data)) {
+                if (codeDetails.credit) {
+                    if (!usersToNotify[codeDetails.credit]) {
+                        usersToNotify[codeDetails.credit] = [];
+                    }
+                    usersToNotify[codeDetails.credit].push(codeId);
                 }
-                usersToNotify[code.credit].push(code);
             }
-        });
+        } else {
+            console.error('Unexpected data format:', data);
+            return;
+        }
 
         for (const [userId, codes] of Object.entries(usersToNotify)) {
             const user = await client.users.fetch(userId);
