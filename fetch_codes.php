@@ -16,6 +16,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 $action = isset($_POST['action']) ? $_POST['action'] : null;
+$status = isset($_POST['status']) ? $_POST['status'] : null;
 
 if ($action === 'viewq') {
     $statusFilter = isset($_POST['status']) ? $_POST['status'] : null;
@@ -39,21 +40,17 @@ if ($action === 'viewq') {
     exit;
 }
 
-if ($action === 'codecheck') {
-    $statusFilter = isset($_POST['status']) ? $_POST['status'] : null;
-    
-    if ($statusFilter) {
-        $filteredCodes = array_filter($data['codes'], function($details) use ($statusFilter) {
-            return $details['status'] === $statusFilter && !empty($details['credit']);
-        });
-        $codes = array_keys($filteredCodes);
-        $response = [];
-        foreach ($codes as $code) {
-            $response[] = ['code' => $code, 'credit' => $data['codes'][$code]['credit']];
+if ($action === 'codecheck' && $status) {
+    $result = [];
+
+    foreach ($data['codes'] as $codeId => $details) {
+        if ($details['status'] === $status) {
+            $result[$codeId] = $details;
         }
-        echo json_encode($response);
-        exit;
     }
+
+    echo json_encode($result);
+    exit;
 }
 
 if ($action === 'checkusercodes') {
@@ -85,6 +82,22 @@ if ($action === 'hint') {
 
     file_put_contents($filename, json_encode($data));
     echo json_encode($updatedCodes);
+    exit;
+}
+
+if ($action === 'checked') {
+    $codes = isset($_POST['codes']) ? json_decode($_POST['codes'], true) : [];
+    $updatedCodes = [];
+
+    foreach ($codes as $code) {
+        if (isset($data['codes'][$code]) && $data['codes'][$code]['status'] === 'not_checked') {
+            $data['codes'][$code]['status'] = 'needs_verified';
+            $updatedCodes[] = $code;
+        }
+    }
+
+    file_put_contents($filename, json_encode($data));
+    echo json_encode(["updated" => $updatedCodes]);
     exit;
 }
 
