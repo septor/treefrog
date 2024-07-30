@@ -20,7 +20,7 @@ module.exports = {
         }
 
         const hints = args.join(' ').split(',');
-        const updatepoint = 'http://septor.xyz/cherrytree/fetch_codes.php';
+        const updatepoint = config.updatepoint;
 
         try {
             const response = await axios.post(updatepoint, qs.stringify({

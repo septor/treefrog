@@ -26,7 +26,7 @@ module.exports = {
 
         const userInput = args[0] ? args[0].toLowerCase() : '';
         const status = mappings[userInput] || '';
-        const endpoint = 'http://septor.xyz/cherrytree/fetch_codes.php';
+        const endpoint = config.fetchpoint;
 
         try {
             const response = await axios.post(endpoint, qs.stringify({ action: 'viewq', status }));

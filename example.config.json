@@ -2,8 +2,11 @@
     "prefix": "!",
     "ownerId": "",
     "vaultManager": "",
+    "updatepoint": "",
+    "fetchpoint": "",
     "allowedChannels": {
         "basecamp": [""],
+        "hint": [""],
         "quests": [""],
         "setas": [""],
         "vault": [""],

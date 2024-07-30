@@ -42,7 +42,7 @@ module.exports = {
                 return message.channel.send(`You're trying to do something I'm not able to help you with.`);
         }
 
-        const endpoint = `http://septor.xyz/cherrytree/update_code.php`;
+        const endpoint = config.updatepoint;
 
         await message.channel.send({ content: response});
         const filter = m => m.author.id === message.author.id;
