@@ -6,10 +6,13 @@
     "fetchpoint": "",
     "allowedChannels": {
         "basecamp": [""],
+        "checked": [""],
         "hint": [""],
+        "opencodes": [""],
         "quests": [""],
         "setas": [""],
         "vault": [""],
+        "fetch": [""],
         "viewq": [""]
 
     },

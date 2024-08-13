@@ -4,15 +4,14 @@ const qs = require('qs');
 const config = require('../config.json');
 const { canPostInChannel, canAccessCommand, convertMilliseconds } = require('../functions');
 
-//TODO: Leveling system. See here: https://github.com/septor/treefrog/issues/4
-
 module.exports = {
     name: 'vault',
     description: 'Fetch a specified number of codes or a specific code range',
     accessLevel: "low",
     async execute(message, args) {
+        const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
+
         if (!canPostInChannel(this.name, message.channel.id)) {
-            const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
             return message.author.send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
                 .catch(error => console.error('Could not send DM to the user.', error));
         }
@@ -27,17 +26,17 @@ module.exports = {
         const gap = 5;
         const credit = message.author.username;
 
-        const fetchpoint = 'http://septor.xyz/cherrytree/fetch_codes.php';
-        const updatepoint = 'http://septor.xyz/cherrytree/update_code.php';
+        const fetchpoint = config.fetchpoint;
+        const updatepoint = config.updatepoint;
 
         try {
+            const fetchCodes = async (action, data) => {
+                return axios.post(fetchpoint, qs.stringify({ action, ...data }));
+            };
 
-            const checkCodesResponse = await axios.post(fetchpoint, qs.stringify({ action: 'checkusercodes', credit }));
-            const userCodes = checkCodesResponse.data || {};
-            const hasUncheckedCodes = userCodes.length > 0;
+            const { data: userCodes } = await fetchCodes('checkusercodes', { credit });
 
-            if (hasUncheckedCodes) {
-                //TODO: create a command that will send them all the codes they need to check in a DM.
+            if (userCodes && userCodes.length > 0) {
                 return message.channel.send('You have unprocessed codes. Please check them before requesting more.')
                     .catch(error => console.error('Could not send DM to the user.', error));
             }
@@ -47,22 +46,21 @@ module.exports = {
             params.append('position', position);
             params.append('credit', credit);
 
-            const response = await axios.post(fetchpoint, params);
-            const codes = response.data;
+            const { data: codes } = await axios.post(fetchpoint, params);
 
             if (codes.error) {
                 return message.channel.send(codes.error);
             }
 
-            if (Object.keys(codes).length === 0) {
+            if (!Object.keys(codes).length) {
                 return message.channel.send('No codes with status "not_checked" found.');
             }
 
-            const location = position === "random" 
-                ? "a random part of the list" 
-                : position === "shuffle" 
-                ? "random locations on the list" 
-                : `the ${position} of the list`;
+            const location = position === "random"
+                ? "a random part of the list"
+                : position === "shuffle"
+                    ? "random locations on the list"
+                    : `the ${position} of the list`;
 
             const userMention = `<@${message.author.id}>`;
 
@@ -74,7 +72,7 @@ module.exports = {
                         .setStyle(ButtonStyle.Danger),
                     new ButtonBuilder()
                         .setCustomId('untested')
-                        .setLabel(`I couldn't test all my codes!`)
+                        .setLabel('I couldn\'t test all my codes!')
                         .setStyle(ButtonStyle.Primary),
                     new ButtonBuilder()
                         .setCustomId('success')
@@ -84,7 +82,7 @@ module.exports = {
 
             const reply = Object.keys(codes).reduce((acc, code, index) => {
                 const spacedCode = code.split('').join(' ');
-                return acc + (index % gap === 0 && index > 0 ? `\n` : '') + `${spacedCode}\n`;
+                return acc + (index % gap === 0 && index > 0 ? '\n' : '') + `${spacedCode}\n`;
             }, '');
 
             const botMessage = await message.channel.send({
@@ -101,8 +99,9 @@ module.exports = {
                 const handleResponseAction = async (action, codesList) => {
                     try {
                         const phpResponse = await axios.post(updatepoint, qs.stringify({ action, value: JSON.stringify(codesList) }));
+                        const responseMessage = action === 'reset' ? 'I\'ve reset all your codes!' : 'The statuses have been updated.';
                         if (phpResponse.data.success) {
-                            await i.followUp({ content: action === 'reset' ? `I've reset all your codes!` : 'The statuses have been updated.' });
+                            await i.followUp({ content: responseMessage });
                         } else {
                             await i.followUp({ content: `Failed to update codes: ${phpResponse.data.error}` });
                         }
@@ -118,33 +117,30 @@ module.exports = {
                     const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
 
                     messageCollector.on('collect', async m => {
-                        if (m.content.toLowerCase().includes("all")) {
-                            await handleResponseAction('reset', Object.keys(userCodes));
-                        } else {
-                            const missedCodes = m.content.split('\n').map(code => code.trim());
-                            const leftoverCodes = Object.keys(userCodes).filter(item => !missedCodes.includes(item));
-                            await handleResponseAction('reset', missedCodes);
-                            await handleResponseAction('flag', leftoverCodes);
-                        }
+                        const missedCodes = m.content.toLowerCase().includes("all")
+                            ? Object.keys(userCodes)
+                            : m.content.split('\n').map(code => code.trim());
+
+                        const leftoverCodes = Object.keys(userCodes).filter(item => !missedCodes.includes(item));
+                        await handleResponseAction('reset', missedCodes);
+                        await handleResponseAction('flag', leftoverCodes);
                         messageCollector.stop();
                     });
 
                     messageCollector.on('end', collected => {
-                        if (collected.size === 0) {
+                        if (!collected.size) {
                             message.channel.send(`No codes were provided within the time limit. Please get with a <@&${config.vaultManager}> to sort this out.`);
                         }
                     });
 
                     collector.stop();
                 } else if (i.customId === 'no') {
-                    const values = Object.keys(codes);
-                    await handleResponseAction('flag', values);
+                    await handleResponseAction('flag', Object.keys(codes));
                     collector.stop();
                 } else if (i.customId === 'success') {
                     await i.followUp({ content: 'Which code cracked the vault?!:' });
 
-                    const messageFilter = m => m.author.id === message.author.id;
-                    const messageCollector = message.channel.createMessageCollector({ filter: messageFilter, time: 60000 });
+                    const messageCollector = message.channel.createMessageCollector({ filter: m => m.author.id === message.author.id, time: 60000 });
 
                     messageCollector.on('collect', async m => {
                         try {
@@ -156,7 +152,7 @@ module.exports = {
                             if (phpResponse.data.success) {
                                 message.channel.send(`<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`);
                             } else {
-                                await m.reply({ content: `Failed to send your code in for verification codes: ${phpResponse.data.error}` });
+                                await m.reply({ content: `Failed to send your code in for verification: ${phpResponse.data.error}` });
                             }
                         } catch (error) {
                             await m.reply({ content: 'An error occurred while updating the code.' });
@@ -165,7 +161,7 @@ module.exports = {
                     });
 
                     messageCollector.on('end', collected => {
-                        if (collected.size === 0) {
+                        if (!collected.size) {
                             message.channel.send(`${userMention} please message any <@&${config.vaultManager}> so we can get this sorted, when you get a chance.`);
                         }
                     });
@@ -175,7 +171,7 @@ module.exports = {
             });
 
             collector.on('end', collected => {
-                if (collected.size === 0) {
+                if (!collected.size) {
                     message.channel.send(`${userMention} I assume you still haven't checked the codes. Please let me know when you do by initiating the \`!checked\` command.`);
                 }
             });
