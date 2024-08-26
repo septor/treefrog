@@ -1,0 +1,12 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:80"
+
+  bot:
+    build: ./bot
+    volumes:
+      - type: bind
+        source: config.json
+        target: /usr/src/app/config.json
