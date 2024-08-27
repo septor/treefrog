@@ -1,32 +1,37 @@
-const { canPostInChannel, canAccessCommand } = require('../functions');
-const axios = require('axios');
-const qs = require('qs');
-const config = require('../config.json');
+import axios from 'axios';
+import qs from 'qs';
 
-module.exports = {
+import { canAccessCommand, canPostInChannel } from '../functions.js';
+
+export default {
     name: 'hint',
     description: 'Update code statuses based on provided hints',
-    accessLevel: "medium",
-    async execute(message, args) {
-        if (!canPostInChannel(this.name, message.channel.id)) {
-            const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
-            return message.author.send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
-                .catch(error => console.error('Could not send DM to the user.', error));
+    accessLevel: 'medium',
+    async execute(message, args, config) {
+        if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
+            const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
+            return message.author
+                .send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
         if (!canAccessCommand(message.author.id, this.accessLevel)) {
-            return message.author.send(`You do not have the required access level to use \`${this.name}\`.`)
-                .catch(error => console.error('Could not send DM to the user.', error));
+            return message.author
+                .send(`You do not have the required access level to use \`${this.name}\`.`)
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
         const hints = args.join(' ').split(',');
         const updatepoint = config.updatepoint;
 
         try {
-            const response = await axios.post(updatepoint, qs.stringify({
-                action: 'hint',
-                hints: JSON.stringify(hints)
-            }));
+            const response = await axios.post(
+                updatepoint,
+                qs.stringify({
+                    action: 'hint',
+                    hints: JSON.stringify(hints),
+                })
+            );
 
             console.log('Response data:', response.data);
 

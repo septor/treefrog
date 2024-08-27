@@ -1,22 +1,24 @@
-const axios = require('axios');
-const qs = require('qs');
-const config = require('../config.json');
-const { canPostInChannel, canAccessCommand, firstLetterUppercase } = require('../functions');
+import axios from 'axios';
+import qs from 'qs';
 
-module.exports = {
+import { canAccessCommand, canPostInChannel, firstLetterUppercase } from '../functions.js';
+
+export default {
     name: 'viewq',
     description: 'View all the codes labelled as "needs_verified" and/or "needs_processed".',
     accessLevel: 'medium',
-    async execute(message, args) {
-        if (!canPostInChannel(this.name, message.channel.id)) {
-            const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
-            return message.author.send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
-                .catch(error => console.error('Could not send DM to the user.', error));
+    async execute(message, args, config) {
+        if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
+            const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
+            return message.author
+                .send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
         if (!canAccessCommand(message.author.id, this.accessLevel)) {
-            return message.author.send(`You do not have the required access level to use \`${this.name}\`.`)
-                .catch(error => console.error('Could not send DM to the user.', error));
+            return message.author
+                .send(`You do not have the required access level to use \`${this.name}\`.`)
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
         const mappings = {

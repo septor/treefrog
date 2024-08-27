@@ -1,13 +1,11 @@
-const config = require('./config.json');
-
-function canPostInChannel(commandName, channelId) {
-    if (config.allowedChannels[commandName]) {
-        return config.allowedChannels[commandName].includes(channelId);
+export function canPostInChannel(commandName, channelId, allowedChannels) {
+    if (allowedChannels[commandName]) {
+        return allowedChannels[commandName].includes(channelId);
     }
     return false;
 }
 
-function getUserAccessLevel(userId) {
+export function getUserAccessLevel(userId) {
     if (config.userAccessLevels.high.includes(userId)) {
         return 'high';
     } else if (config.userAccessLevels.medium.includes(userId)) {
@@ -17,7 +15,7 @@ function getUserAccessLevel(userId) {
     }
 }
 
-function canAccessCommand(userId, commandAccessLevel) {
+export function canAccessCommand(userId, commandAccessLevel) {
     const userAccessLevel = getUserAccessLevel(userId);
 
     if (commandAccessLevel === 'high' && userAccessLevel !== 'high') {
@@ -28,14 +26,15 @@ function canAccessCommand(userId, commandAccessLevel) {
     return true;
 }
 
-function formatNumber(number) {
+export function formatNumber(number) {
     const digits = number.toString().length;
     const suffix = digits >= 10 ? 'b' : digits >= 7 ? 'm' : digits >= 4 ? 'k' : '';
-    const formattedNumber = number / (suffix === 'b' ? 1000000000 : suffix === 'm' ? 1000000 : suffix === 'k' ? 1000 : 1);
+    const formattedNumber =
+        number / (suffix === 'b' ? 1000000000 : suffix === 'm' ? 1000000 : suffix === 'k' ? 1000 : 1);
     return formattedNumber.toFixed(0) + suffix;
 }
 
-function convertMilliseconds(ms) {
+export function convertMilliseconds(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -54,28 +53,20 @@ function convertMilliseconds(ms) {
     return result;
 }
 
-function firstLetterUppercase(word) {
-    const firstLetter = word.charAt(0)
-    const firstLetterCap = firstLetter.toUpperCase()
-    const remainingLetters = word.slice(1)
-    return firstLetterCap + remainingLetters
+export function firstLetterUppercase(word) {
+    const firstLetter = word.charAt(0);
+    const firstLetterCap = firstLetter.toUpperCase();
+    const remainingLetters = word.slice(1);
+    return firstLetterCap + remainingLetters;
 }
 
-function isInteger(value) {
+export function isInteger(value) {
     return /^\d+$/.test(value);
 }
 
-function toTitleCase(str) {
-    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+export function toTitleCase(str) {
+    return str
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 }
-
-module.exports = {
-    canPostInChannel,
-    getUserAccessLevel,
-    canAccessCommand,
-    formatNumber,
-    convertMilliseconds,
-    firstLetterUppercase,
-    isInteger,
-    toTitleCase,
-};

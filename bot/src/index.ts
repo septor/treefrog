@@ -1,32 +1,52 @@
-import config from './config.json';
-import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, Message } from 'discord.js';
+import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-import { checkForCodes } from './notify';
+import url from 'url';
 
-require('dotenv').config();
+import { Config, loadConfig } from './config.js';
+import { checkForCodes } from './notify.js';
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config();
+
+const config = await loadConfig('config.json');
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
+});
 
 const token = process.env.TOKEN;
 const prefix = config.prefix;
 
-const commands = new Collection();
-
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-    const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    commands.set(command.name, command);
+interface Command {
+    execute: (message: Message<boolean>, args: string[], config: Config) => Promise<void>;
 }
+
+async function loadCommands(): Promise<Collection<string, Command>> {
+    const commandsPath = path.join(__dirname, 'commands');
+    const commandFiles = fs.readdirSync(url.pathToFileURL(commandsPath)).filter((file) => file.endsWith('.js'));
+
+    const commands: Collection<string, Command> = new Collection();
+    for (const file of commandFiles) {
+        const command = await import(url.pathToFileURL(path.join(commandsPath, file)).toString());
+        if (command.execute && typeof command.execute == 'function') {
+            console.log('loaded');
+            commands.set(command.name, command);
+        }
+    }
+
+    return commands;
+}
+
+const commands = await loadCommands();
 
 client.once('ready', async () => {
     console.log(`Bot online as ${client.user!.tag}!`);
 
     setInterval(() => {
-        checkForCodes(client);
+        checkForCodes(client, config);
     }, 3600000);
 
     const restartPath = path.join(__dirname, 'restart.json');
@@ -41,7 +61,7 @@ client.once('ready', async () => {
                     return;
                 }
 
-                const restartMessage = await channel.messages.fetch(restartData.messageId).catch(err => {
+                const restartMessage = await channel.messages.fetch(restartData.messageId).catch((err) => {
                     console.error('Error fetching restart message:', err);
                 });
 
@@ -61,7 +81,7 @@ client.once('ready', async () => {
     }
 });
 
-client.on('messageCreate', async message => {
+client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
 
@@ -70,13 +90,14 @@ client.on('messageCreate', async message => {
     if (!commands.has(commandName)) return;
 
     const command = commands.get(commandName);
-    try {
-        // @ts-ignore
-        await command.execute(message, args.slice(1));
-    } catch (error) {
-        console.error(error);
-        await message.reply('There was an error trying to execute that command!');
+    if (command) {
+        try {
+            await command.execute(message, args.slice(1), config);
+        } catch (error) {
+            console.error(error);
+            await message.reply('There was an error trying to execute that command!');
+        }
     }
 });
 
-client.login(token);
+await client.login(token);
