@@ -1,8 +1,8 @@
 const axios = require('axios');
 const qs = require('qs');
-const config = require('config.json');
+import config from './config.json';
 
-async function checkForCodes(client) {
+export async function checkForCodes(client) {
     const endpoint = config.updatepoint;
     const params = qs.stringify({ action: 'codecheck', status: 'not_checked' });
 
@@ -42,7 +42,3 @@ async function checkForCodes(client) {
         console.error('Error checking and notifying users:', error);
     }
 }
-
-module.exports = {
-    checkForCodes
-};

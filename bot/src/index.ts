@@ -1,15 +1,17 @@
+import config from './config.json';
+import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import fs from 'fs';
+import path from 'path';
+import { checkForCodes } from './notify';
+
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const fs = require('fs');
-const path = require('path');
-const config = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 const token = process.env.TOKEN;
 const prefix = config.prefix;
 
-client.commands = new Collection();
+const commands = new Collection();
 
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -17,11 +19,11 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
-    client.commands.set(command.name, command);
+    commands.set(command.name, command);
 }
 
 client.once('ready', async () => {
-    console.log(`Bot online as ${client.user.tag}!`);
+    console.log(`Bot online as ${client.user!.tag}!`);
 
     setInterval(() => {
         checkForCodes(client);
@@ -34,6 +36,11 @@ client.once('ready', async () => {
         try {
             const channel = await client.channels.fetch(restartData.channelId);
             if (channel) {
+                // TODO: added this -- verify
+                if (!channel.partial) {
+                    return;
+                }
+
                 const restartMessage = await channel.messages.fetch(restartData.messageId).catch(err => {
                     console.error('Error fetching restart message:', err);
                 });
@@ -56,20 +63,19 @@ client.once('ready', async () => {
 
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
-
     if (!message.content.startsWith(prefix)) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const commandName = args.shift().toLowerCase();
+    const commandName = args[0].toLowerCase();
+    if (!commands.has(commandName)) return;
 
-    if (!client.commands.has(commandName)) return;
-    const command = client.commands.get(commandName);
-
+    const command = commands.get(commandName);
     try {
-        await command.execute(message, args);
+        // @ts-ignore
+        await command.execute(message, args.slice(1));
     } catch (error) {
         console.error(error);
-        message.reply('There was an error trying to execute that command!');
+        await message.reply('There was an error trying to execute that command!');
     }
 });
 
