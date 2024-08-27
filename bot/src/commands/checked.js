@@ -15,7 +15,7 @@ export default {
             );
         }
 
-        if (!canAccessCommand(message.author.id, this.accessLevel)) {
+        if (!canAccessCommand(message.author.id, this.accessLevel, config.userAccessLevels)) {
             return message.channel.send(`You do not have the required access level to use \`${this.name}\`.`);
         }
 

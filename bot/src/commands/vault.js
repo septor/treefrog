@@ -17,7 +17,7 @@ export default {
                 .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
-        if (!canAccessCommand(message.author.id, this.accessLevel)) {
+        if (!canAccessCommand(message.author.id, this.accessLevel, config.userAccessLevels)) {
             return message.author
                 .send(`You do not have the required access level to use \`${this.name}\`.`)
                 .catch((error) => console.error('Could not send DM to the user.', error));

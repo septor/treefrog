@@ -5,18 +5,18 @@ export function canPostInChannel(commandName, channelId, allowedChannels) {
     return false;
 }
 
-export function getUserAccessLevel(userId) {
-    if (config.userAccessLevels.high.includes(userId)) {
+function getUserAccessLevel(userId, userAccessLevels) {
+    if (userAccessLevels.high.includes(userId)) {
         return 'high';
-    } else if (config.userAccessLevels.medium.includes(userId)) {
+    } else if (userAccessLevels.medium.includes(userId)) {
         return 'medium';
     } else {
         return 'low';
     }
 }
 
-export function canAccessCommand(userId, commandAccessLevel) {
-    const userAccessLevel = getUserAccessLevel(userId);
+export function canAccessCommand(userId, commandAccessLevel, userAccessLevels) {
+    const userAccessLevel = getUserAccessLevel(userId, userAccessLevels);
 
     if (commandAccessLevel === 'high' && userAccessLevel !== 'high') {
         return false;
