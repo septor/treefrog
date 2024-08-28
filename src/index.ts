@@ -16,7 +16,7 @@ dotenv.config();
 
 const context: Context = {
     config: await loadConfig('config.json'),
-    database: new Database('data.json'),
+    database: new Database('data/data.json'),
 };
 
 const client = new Client({

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Semaphore from 'semaphore-async-await';
+import { Lock } from 'semaphore-async-await';
 
 type Status = 'invalid' | 'not_checked' | 'needs_verified' | 'needs_processed' | 'success';
 
@@ -17,8 +17,8 @@ interface Data {
 export class Database {
     readonly dbpath: string;
 
-    private lock: Semaphore = new Semaphore(1);
-    private data: Data;
+    private lock: Lock = new Lock();
+    readonly data: Data;
 
     constructor(dbpath: string) {
         this.dbpath = dbpath;
@@ -31,17 +31,17 @@ export class Database {
 
     public async codeCheck(status?: Status) {
         try {
-            await this.lock.wait();
+            await this.lock.acquire();
             const entries = Object.entries(this.data.codes).filter(([_, { status: s }]) => s === status);
             return Object.fromEntries(entries);
         } finally {
-            this.lock.signal();
+            this.lock.release();
         }
     }
 
     public async viewq(status?: Status): Promise<string[]> {
         try {
-            await this.lock.wait();
+            await this.lock.acquire();
             let codes: string[];
             if (status) {
                 codes = Object.entries(this.data.codes)
@@ -58,24 +58,24 @@ export class Database {
             }
             return codes;
         } finally {
-            this.lock.signal();
+            this.lock.release();
         }
     }
 
     public async checkUserCodes(credit: string): Promise<string[]> {
         try {
-            await this.lock.wait();
+            await this.lock.acquire();
             return Object.entries(this.data.codes)
                 .filter(([_, { status: s, credit: c }]) => s === 'not_checked' && c === credit)
                 .map(([code]) => code);
         } finally {
-            this.lock.signal();
+            this.lock.release();
         }
     }
 
     public async checked(codes: string[]): Promise<string[]> {
         try {
-            await this.lock.wait();
+            await this.lock.acquire();
 
             const updatedCodes = [];
             for (const code of codes) {
@@ -88,13 +88,13 @@ export class Database {
             this.flush();
             return updatedCodes;
         } finally {
-            this.lock.signal();
+            this.lock.release();
         }
     }
 
     public async hint(hints: string[]): Promise<string[]> {
         try {
-            await this.lock.wait();
+            await this.lock.acquire();
 
             const updatedCodes = [];
             for (let code in this.data.codes) {
@@ -107,7 +107,7 @@ export class Database {
             this.flush();
             return updatedCodes;
         } finally {
-            this.lock.signal();
+            this.lock.release();
         }
     }
 
