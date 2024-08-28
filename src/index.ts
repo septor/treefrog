@@ -61,12 +61,7 @@ client.once('ready', async () => {
 
         try {
             const channel = await client.channels.fetch(restartData.channelId);
-            if (channel) {
-                // TODO: added this -- verify
-                if (!channel.partial) {
-                    return;
-                }
-
+            if (channel?.partial) {
                 const restartMessage = await channel.messages.fetch(restartData.messageId).catch((err) => {
                     console.error('Error fetching restart message:', err);
                 });
