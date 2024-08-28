@@ -5,7 +5,7 @@ export default {
     name: 'restart',
     description: 'Restarts the bot',
     accessLevel: 'high',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         if (message.author.id !== config.ownerId) {
             return message.reply('You do not have permission to use this command.');
         }

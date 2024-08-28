@@ -8,7 +8,7 @@ export default {
     name: 'vault',
     description: 'Fetch a specified number of codes or a specific code range',
     accessLevel: 'low',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
@@ -32,15 +32,9 @@ export default {
         const updatepoint = config.updatepoint;
 
         try {
-            const fetchCodes = async (action, data) => {
-                return axios.post(fetchpoint, qs.stringify({ action, ...data }));
-            };
+            const userCodes = database.checkUserCodes(credit);
 
-            const { data: userCodes } = await fetchCodes('checkusercodes', {
-                credit,
-            });
-
-            if (userCodes && userCodes.length > 0) {
+            if (userCodes.length > 0) {
                 return message.channel
                     .send('You have unprocessed codes. Please check them before requesting more.')
                     .catch((error) => console.error('Could not send DM to the user.', error));
@@ -51,6 +45,7 @@ export default {
             params.append('position', position);
             params.append('credit', credit);
 
+            // TODO: this hits fetch_codes.php and requests some new codes... it also updates the database of codes
             const { data: codes } = await axios.post(fetchpoint, params);
 
             if (codes.error) {

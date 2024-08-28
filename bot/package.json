@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --silent=false",
     "dev": "tsx watch src/index.js",
     "start": "tsc && node --enable-source-maps dist/index.js",
     "build": "tsc",
@@ -18,7 +18,8 @@
     "axios": "^1.7.2",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "qs": "^6.12.1"
+    "qs": "^6.12.1",
+    "semaphore-async-await": "^1.5.1"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

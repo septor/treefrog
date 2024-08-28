@@ -4,7 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
-import { Config, loadConfig } from './config.js';
+import { loadConfig } from './config.js';
+import { Context } from './context.js';
+import { Database } from './database.js';
 import { checkForCodes } from './notify.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -12,16 +14,20 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const config = await loadConfig('config.json');
+const context: Context = {
+    config: await loadConfig('config.json'),
+    database: new Database('data.json'),
+};
+
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 });
 
 const token = process.env.TOKEN;
-const prefix = config.prefix;
+const prefix = context.config.prefix;
 
 interface Command {
-    execute: (message: Message<boolean>, args: string[], config: Config) => Promise<void>;
+    execute: (message: Message<boolean>, args: string[], context: Context) => Promise<void>;
 }
 
 async function loadCommands(): Promise<Collection<string, Command>> {
@@ -46,7 +52,7 @@ client.once('ready', async () => {
     console.log(`Bot online as ${client.user!.tag}!`);
 
     setInterval(() => {
-        checkForCodes(client, config);
+        checkForCodes(client, context);
     }, 3600000);
 
     const restartPath = path.join(__dirname, 'restart.json');
@@ -92,7 +98,7 @@ client.on('messageCreate', async (message) => {
     const command = commands.get(commandName);
     if (command) {
         try {
-            await command.execute(message, args.slice(1), config);
+            await command.execute(message, args.slice(1), context);
         } catch (error) {
             console.error(error);
             await message.reply('There was an error trying to execute that command!');

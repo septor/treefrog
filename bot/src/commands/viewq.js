@@ -1,13 +1,10 @@
-import axios from 'axios';
-import qs from 'qs';
-
 import { canAccessCommand, canPostInChannel, firstLetterUppercase } from '../functions.js';
 
 export default {
     name: 'viewq',
     description: 'View all the codes labelled as "needs_verified" and/or "needs_processed".',
     accessLevel: 'medium',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
             return message.author
@@ -28,15 +25,8 @@ export default {
 
         const userInput = args[0] ? args[0].toLowerCase() : '';
         const status = mappings[userInput] || '';
-        const endpoint = config.fetchpoint;
-
         try {
-            const response = await axios.post(endpoint, qs.stringify({ action: 'viewq', status }));
-            const codes = response.data;
-
-            if (codes.error) {
-                return message.channel.send(codes.error);
-            }
+            const codes = database.viewq(status);
 
             if (codes.length === 0) {
                 return message.channel.send('No codes found with the specified status.');

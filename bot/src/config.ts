@@ -4,8 +4,6 @@ export interface Config {
     prefix: string;
     ownerId: string;
     vaultManager: string;
-    updatepoint: string;
-    fetchpoint: string;
     allowedChannels: {
         basecamp: string[];
         checked: string[];

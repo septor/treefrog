@@ -7,7 +7,7 @@ export default {
     name: 'setas',
     description: 'Set a code, or a group of codes, as a specific status.',
     accessLevel: 'medium',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
             return message.author

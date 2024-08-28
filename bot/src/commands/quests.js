@@ -6,7 +6,7 @@ export default {
     name: 'quests',
     description: 'Display the required resources to complete a quest line, or a quest.',
     accessLevel: 'low',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         const url = 'https://raw.githubusercontent.com/septor/treefrog/main/quests.json';
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {

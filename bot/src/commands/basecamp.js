@@ -6,7 +6,7 @@ export default {
     name: 'basecamp',
     description: 'Displays the materials you need to upgrade your Base Camp to a defined level.',
     accessLevel: 'low',
-    async execute(message, args, config) {
+    async execute(message, args, { config, database }) {
         const url = 'https://raw.githubusercontent.com/septor/treefrog/main/basecamp.json';
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
