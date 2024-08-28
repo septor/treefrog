@@ -4,3 +4,4 @@ dist/
 node_modules/
 testing/
 config.json
+data/data.json

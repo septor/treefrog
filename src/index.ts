@@ -32,7 +32,9 @@ interface Command {
 
 async function loadCommands(): Promise<Collection<string, Command>> {
     const commandsPath = path.join(__dirname, 'commands');
-    const commandFiles = fs.readdirSync(url.pathToFileURL(commandsPath)).filter((file) => file.endsWith('.js'));
+    const commandFiles = fs
+        .readdirSync(url.pathToFileURL(commandsPath))
+        .filter((file) => file.endsWith('.js') || file.endsWith('.ts'));
 
     const commands: Collection<string, Command> = new Collection();
     for (const file of commandFiles) {
