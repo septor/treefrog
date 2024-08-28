@@ -28,7 +28,6 @@ export default {
         const gap = 5;
         const credit = message.author.username;
 
-        const fetchpoint = config.fetchpoint;
         const updatepoint = config.updatepoint;
 
         try {
@@ -46,12 +45,7 @@ export default {
             params.append('credit', credit);
 
             // TODO: this hits fetch_codes.php and requests some new codes... it also updates the database of codes
-            const { data: codes } = await axios.post(fetchpoint, params);
-
-            if (codes.error) {
-                return message.channel.send(codes.error);
-            }
-
+            const codes = await database.claimCodes(limit, position, credit);
             if (!Object.keys(codes).length) {
                 return message.channel.send('No codes with status "not_checked" found.');
             }

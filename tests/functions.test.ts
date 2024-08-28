@@ -11,7 +11,7 @@ describe('canPostInChannel', () => {
             checked: [],
             fetch: [],
             hint: [],
-            opencodes: [],
+            opencodes: ['456'],
             quests: [],
             setas: [],
             vault: [],
@@ -20,17 +20,15 @@ describe('canPostInChannel', () => {
     });
 
     test('command name is not in allowedChannels', () => {
-        const result = canPostInChannel('a', '123', allowedChannels);
-        expect(result).toBe(false);
+        expect(canPostInChannel('a', '123', allowedChannels)).toBe(false);
     });
 
     test('channelId is not allowed', () => {
-        const result = canPostInChannel('a', '321', allowedChannels);
-        expect(result).toBe(false);
+        expect(canPostInChannel('a', '321', allowedChannels)).toBe(false);
+        expect(canPostInChannel('opencodes', '123', allowedChannels)).toBe(false);
     });
 
-    test('channelId is in allowedChannels', () => {
-        const result = canPostInChannel('basecamp', '123', allowedChannels);
-        expect(result).toBe(true);
+    test('channelId is allowed', () => {
+        expect(canPostInChannel('basecamp', '123', allowedChannels)).toBe(true);
     });
 });

@@ -114,7 +114,7 @@ export class Database {
         }
     }
 
-    public async claimCodes(limit: number, position: string): Promise<string[]> {
+    public async claimCodes(limit: number, position: string, credit: string): Promise<string[]> {
         const codes = Object.entries(this.data.codes).filter(
             ([_, { status: s, credit: c }]) => s === 'not_checked' && c === ''
         );
@@ -167,6 +167,27 @@ echo json_encode($result);
          */
 
         return [];
+    }
+
+    public async updateUsers(users: string[]) {
+        try {
+            await this.lock.acquire();
+
+            let dirty = false;
+            for (const user of users) {
+                for (const [_, details] of Object.entries(this.data.codes)) {
+                    if (details.credit === user) {
+                        details.status = 'invalid';
+                        dirty = true;
+                    }
+                }
+            }
+            if (dirty) {
+                this.flush();
+            }
+        } finally {
+            this.lock.release();
+        }
     }
 }
 
