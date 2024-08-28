@@ -1,11 +1,13 @@
-export function canPostInChannel(commandName, channelId, allowedChannels) {
+import { AllowedChannels, UserAccessLevels } from './config';
+
+export function canPostInChannel(commandName: string, channelId: string, allowedChannels: AllowedChannels) {
     if (allowedChannels[commandName]) {
         return allowedChannels[commandName].includes(channelId);
     }
     return false;
 }
 
-function getUserAccessLevel(userId, userAccessLevels) {
+function getUserAccessLevel(userId: string, userAccessLevels: UserAccessLevels) {
     if (userAccessLevels.high.includes(userId)) {
         return 'high';
     } else if (userAccessLevels.medium.includes(userId)) {
@@ -15,7 +17,7 @@ function getUserAccessLevel(userId, userAccessLevels) {
     }
 }
 
-export function canAccessCommand(userId, commandAccessLevel, userAccessLevels) {
+export function canAccessCommand(userId: string, commandAccessLevel: string, userAccessLevels: UserAccessLevels) {
     const userAccessLevel = getUserAccessLevel(userId, userAccessLevels);
 
     if (commandAccessLevel === 'high' && userAccessLevel !== 'high') {
@@ -26,15 +28,14 @@ export function canAccessCommand(userId, commandAccessLevel, userAccessLevels) {
     return true;
 }
 
-export function formatNumber(number) {
-    const digits = number.toString().length;
+export function formatNumber(n: number) {
+    const digits = n.toString().length;
     const suffix = digits >= 10 ? 'b' : digits >= 7 ? 'm' : digits >= 4 ? 'k' : '';
-    const formattedNumber =
-        number / (suffix === 'b' ? 1000000000 : suffix === 'm' ? 1000000 : suffix === 'k' ? 1000 : 1);
+    const formattedNumber = n / (suffix === 'b' ? 1000000000 : suffix === 'm' ? 1000000 : suffix === 'k' ? 1000 : 1);
     return formattedNumber.toFixed(0) + suffix;
 }
 
-export function convertMilliseconds(ms) {
+export function convertMilliseconds(ms: number) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -53,19 +54,15 @@ export function convertMilliseconds(ms) {
     return result;
 }
 
-export function firstLetterUppercase(word) {
+export function firstLetterUppercase(word: string) {
     const firstLetter = word.charAt(0);
     const firstLetterCap = firstLetter.toUpperCase();
     const remainingLetters = word.slice(1);
     return firstLetterCap + remainingLetters;
 }
 
-export function isInteger(value) {
-    return /^\d+$/.test(value);
-}
-
-export function toTitleCase(str) {
-    return str
+export function toTitleCase(s: string) {
+    return s
         .split(' ')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');

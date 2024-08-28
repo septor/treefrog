@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { canAccessCommand, canPostInChannel, isInteger, toTitleCase } from '../functions.js';
+import { canAccessCommand, canPostInChannel, toTitleCase } from '../functions.js';
 
 export default {
     name: 'quests',
@@ -23,7 +23,7 @@ export default {
         }
 
         let level = null;
-        if (args.length > 1 && isInteger(args[args.length - 1])) {
+        if (args.length > 1 && args[args.length - 1].isInteger()) {
             level = args.pop();
         }
 
