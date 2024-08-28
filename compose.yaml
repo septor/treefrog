@@ -1,6 +1,6 @@
 services:
   bot:
-    build: ./bot
+    build: .
     volumes:
       - type: bind
         source: config.json
