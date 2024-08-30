@@ -404,6 +404,9 @@
         },
         "6": {
             "Gold Coin": 5000
+        },
+        "7": {
+            "Gold Coin": 10000
         }
     },
     "secret keeper": {
