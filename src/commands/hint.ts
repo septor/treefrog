@@ -1,10 +1,13 @@
+import { Message } from 'discord.js';
+
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel } from '../functions.js';
 
 export default {
     name: 'hint',
     description: 'Update code statuses based on provided hints',
     accessLevel: 'medium',
-    async execute(message, args, { config, database }) {
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
             return message.author
@@ -20,7 +23,7 @@ export default {
 
         try {
             const hints = args.join(' ').split(',');
-            const updateCodes = await database.hint(hints);
+            const updatedCodes = await database.hint(hints);
 
             if (updatedCodes && updatedCodes.length > 0) {
                 message.channel.send(`Updated ${updatedCodes.length} codes to 'invalid' based on the provided hints.`);

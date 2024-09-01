@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { Message } from 'discord.js';
 
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel, formatNumber } from '../functions.js';
 
 export default {
     name: 'basecamp',
     description: 'Displays the materials you need to upgrade your Base Camp to a defined level.',
     accessLevel: 'low',
-    async execute(message, args, { config, database }) {
-        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/basecamp.json';
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
+        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/data/basecamp.json';
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
@@ -22,18 +24,18 @@ export default {
                 .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
-        async function getUpgradeMaterials(startLevel, endLevel = null) {
+        async function getUpgradeMaterials(startLevel: number, endLevel: number | null = null) {
             try {
                 const response = await axios.get(url);
                 const materials = response.data;
 
-                let requiredMaterials = {};
+                let requiredMaterials: { [key: string]: number } = {};
 
                 if (endLevel === null) {
                     requiredMaterials = materials[startLevel.toString()] || {};
                 } else {
                     for (let level = startLevel; level <= endLevel; level++) {
-                        const levelMaterials = materials[level.toString()];
+                        const levelMaterials: { [key: string]: number } = materials[level.toString()];
                         if (levelMaterials) {
                             for (const [material, amount] of Object.entries(levelMaterials)) {
                                 if (requiredMaterials[material]) {

@@ -189,6 +189,27 @@ echo json_encode($result);
             this.lock.release();
         }
     }
+
+    public async updateCodes(codes: string[], updates: Partial<CodeDetails>) {
+        try {
+            await this.lock.acquire();
+
+            for (const code of codes) {
+                if (this.data.codes[code]) {
+                    if (updates.status !== undefined) {
+                        this.data.codes[code].status = updates.status;
+                    }
+                    if (updates.credit !== undefined) {
+                        this.data.codes[code].credit = updates.credit;
+                    }
+                }
+            }
+
+            this.flush();
+        } finally {
+            this.lock.release();
+        }
+    }
 }
 
 function checkHints(code: string, hints: string[]): boolean {

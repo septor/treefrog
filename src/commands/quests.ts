@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { Message } from 'discord.js';
 
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel, toTitleCase } from '../functions.js';
 
 export default {
     name: 'quests',
     description: 'Display the required resources to complete a quest line, or a quest.',
     accessLevel: 'low',
-    async execute(message, args, { config, database }) {
-        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/quests.json';
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
+        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/data/quests.json';
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
@@ -23,7 +25,7 @@ export default {
         }
 
         let level = null;
-        if (args.length > 1 && args[args.length - 1].isInteger()) {
+        if (args.length > 1 && !isNaN(parseInt(args[args.length - 1]))) {
             level = args.pop();
         }
 
@@ -56,6 +58,7 @@ export default {
                 let resultMessage = `**${displayName}**\n`;
                 for (const [lvl, materials] of Object.entries(quests[questName])) {
                     resultMessage += `**\t${lvl}**\n`;
+                    // @ts-ignore TODO: properly type
                     for (const [material, amount] of Object.entries(materials)) {
                         resultMessage += `\t\t${material}: ${amount}\n`;
                     }

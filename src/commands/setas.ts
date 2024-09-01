@@ -1,13 +1,13 @@
-import axios from 'axios';
-import qs from 'qs';
+import { Message } from 'discord.js';
 
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel } from '../functions.js';
 
 export default {
     name: 'setas',
     description: 'Set a code, or a group of codes, as a specific status.',
     accessLevel: 'medium',
-    async execute(message, args, { config, database }) {
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
             return message.author
@@ -26,7 +26,6 @@ export default {
         }
 
         let action, response;
-
         switch (args[0]) {
             case 'invalid':
                 action = 'code';
@@ -44,10 +43,8 @@ export default {
                 return message.channel.send(`You're trying to do something I'm not able to help you with.`);
         }
 
-        const endpoint = config.updatepoint;
-
         await message.channel.send({ content: response });
-        const filter = (m) => m.author.id === message.author.id;
+        const filter = (m: Message) => m.author.id === message.author.id;
         const collector = message.channel.createMessageCollector({
             filter: filter,
             time: 60000,
@@ -57,29 +54,18 @@ export default {
             const codesToProcess = m.content.split('\n').map((code) => code.trim());
 
             try {
-                const phpResponse = await axios.post(
-                    endpoint,
-                    qs.stringify({
-                        action: action,
-                        value: JSON.stringify(codesToProcess),
-                    })
-                );
-
-                if (phpResponse.data.success) {
-                    if (action == 'success') {
-                        message.channel.send(
-                            `<@&${config.vaultManager}> a successful code has been found and verified!`
-                        );
-                    } else {
-                        await m.reply({
-                            content: 'The statuses have been updated.',
-                        });
-                    }
-                } else {
-                    await m.reply({
-                        content: `Failed to update codes: ${phpResponse.data.error}`,
-                    });
+                switch (action) {
+                    case 'code':
+                        await database.updateCodes(codesToProcess, { status: 'invalid' });
+                        break;
+                    case 'reset':
+                        await database.updateCodes(codesToProcess, { status: 'not_checked', credit: '' });
+                        break;
+                    case 'success':
+                        await database.updateCodes(codesToProcess, { status: 'success' });
+                        break;
                 }
+                await m.reply({ content: 'The codes have been updated.' });
             } catch (error) {
                 console.error('Error updating codes:', error);
                 await m.reply({

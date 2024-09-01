@@ -1,10 +1,13 @@
+import { Message } from 'discord.js';
+
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel, firstLetterUppercase } from '../functions.js';
 
 export default {
     name: 'viewq',
     description: 'View all the codes labelled as "needs_verified" and/or "needs_processed".',
     accessLevel: 'medium',
-    async execute(message, args, { config, database }) {
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
             const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
             return message.author
@@ -18,7 +21,7 @@ export default {
                 .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
-        const mappings = {
+        const mappings: { [key: string]: string } = {
             unprocessed: 'needs_processed',
             unverified: 'needs_verified',
         };
@@ -26,7 +29,11 @@ export default {
         const userInput = args[0] ? args[0].toLowerCase() : '';
         const status = mappings[userInput] || '';
         try {
-            const codes = database.viewq(status);
+            if (status != 'needs_processed' && status != 'needs_verified') {
+                await message.channel.send('Invalid mapping specified.');
+                return;
+            }
+            const codes = await database.viewq(status);
 
             if (codes.length === 0) {
                 return message.channel.send('No codes found with the specified status.');
