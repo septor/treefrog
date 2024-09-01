@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { CollectorFilter, Message } from 'discord.js';
-import qs from 'qs';
 
 import { Context } from '../context';
 import { canAccessCommand, canPostInChannel } from '../functions.js';
@@ -37,17 +35,8 @@ export default {
                 .first()!
                 .content.split('\n')
                 .map((code) => code.trim());
-            const updatepoint = 'TODO: GET RID OF ME';
             try {
-                const response = await axios.post(
-                    updatepoint,
-                    qs.stringify({
-                        action: 'checked',
-                        codes: JSON.stringify(checkedCodes),
-                    })
-                );
-                const updatedCodes = response.data.updated;
-
+                const updatedCodes = await database.checked(checkedCodes);
                 if (updatedCodes.length > 0) {
                     message.channel.send(
                         `Updated ${updatedCodes.length} codes to 'needs_verified' based on your input.`

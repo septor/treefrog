@@ -1,14 +1,13 @@
-import axios from 'axios';
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import qs from 'qs';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Interaction, Message } from 'discord.js';
 
+import { Context } from '../context';
 import { canAccessCommand, canPostInChannel, convertMilliseconds } from '../functions.js';
 
 export default {
     name: 'vault',
     description: 'Fetch a specified number of codes or a specific code range',
     accessLevel: 'low',
-    async execute(message, args, { config, database }) {
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
         const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
 
         if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
@@ -23,26 +22,25 @@ export default {
                 .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
-        const limit = args[0] || 5;
+        let limit: number = 5;
+        if (args[0]) {
+            const n = parseInt(args[0]);
+            if (!isNaN(n)) {
+                limit = n;
+            }
+        }
         const position = args[1] || 'random';
         const gap = 5;
         const credit = message.author.username;
 
-        const updatepoint = config.updatepoint;
-
         try {
-            const userCodes = database.checkUserCodes(credit);
+            const userCodes = await database.checkUserCodes(credit);
 
             if (userCodes.length > 0) {
                 return message.channel
                     .send('You have unprocessed codes. Please check them before requesting more.')
                     .catch((error) => console.error('Could not send DM to the user.', error));
             }
-
-            const params = new URLSearchParams();
-            params.append('limit', limit);
-            params.append('position', position);
-            params.append('credit', credit);
 
             // TODO: this hits fetch_codes.php and requests some new codes... it also updates the database of codes
             const codes = await database.claimCodes(limit, position, credit);
@@ -59,7 +57,7 @@ export default {
 
             const userMention = `<@${message.author.id}>`;
 
-            const row = new ActionRowBuilder().addComponents(
+            const row: ActionRowBuilder = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
                     .setCustomId('no')
                     .setLabel('None of these are correct.')
@@ -81,10 +79,11 @@ export default {
 
             const botMessage = await message.channel.send({
                 content: `${userMention} here are your ${limit} codes, from ${location}:\nPlease reply within ${convertMilliseconds(30000 * Object.keys(codes).length)} so we can keep things flowing!\n${reply.trimEnd()}`,
+                // @ts-ignore
                 components: [row],
             });
 
-            const filter = (i) => i.user.id === message.author.id;
+            const filter = (i: Interaction) => i.user.id === message.author.id;
             const collector = botMessage.createMessageComponentCollector({
                 filter,
                 time: 30000 * Object.keys(codes).length,
@@ -93,24 +92,17 @@ export default {
             collector.on('collect', async (i) => {
                 await i.deferUpdate();
 
-                const handleResponseAction = async (action, codesList) => {
+                const handleResponseAction = async (action: 'reset' | 'flag', codesList: string[]) => {
                     try {
-                        const phpResponse = await axios.post(
-                            updatepoint,
-                            qs.stringify({
-                                action,
-                                value: JSON.stringify(codesList),
-                            })
-                        );
+                        if (action == 'reset') {
+                            await database.updateCodes(codesList, { status: 'not_checked', credit: '' });
+                        } else if (action == 'flag') {
+                            await database.updateCodes(codesList, { status: 'needs_processed' });
+                        }
+
                         const responseMessage =
                             action === 'reset' ? "I've reset all your codes!" : 'The statuses have been updated.';
-                        if (phpResponse.data.success) {
-                            await i.followUp({ content: responseMessage });
-                        } else {
-                            await i.followUp({
-                                content: `Failed to update codes: ${phpResponse.data.error}`,
-                            });
-                        }
+                        await i.followUp({ content: responseMessage });
                     } catch (error) {
                         await i.followUp({
                             content: 'An error occurred while updating the codes.',
@@ -124,7 +116,7 @@ export default {
                             'Let me know which you missed (split them by new lines). If you missed them all, just reply "all":',
                     });
 
-                    const messageFilter = (m) => m.author.id === message.author.id;
+                    const messageFilter = (m: Message) => m.author.id === message.author.id;
                     const messageCollector = message.channel.createMessageCollector({
                         filter: messageFilter,
                         time: 60000,
@@ -166,22 +158,10 @@ export default {
                     messageCollector.on('collect', async (m) => {
                         try {
                             const correctCode = [m.content];
-                            const phpResponse = await axios.post(
-                                updatepoint,
-                                qs.stringify({
-                                    action: 'candidate',
-                                    value: JSON.stringify(correctCode),
-                                })
+                            await database.updateCodes(correctCode, { status: 'needs_processed' });
+                            message.channel.send(
+                                `<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`
                             );
-                            if (phpResponse.data.success) {
-                                message.channel.send(
-                                    `<@&${config.vaultManager}> a successful code may have been found, please check it out: \`!viewq unverified\`.`
-                                );
-                            } else {
-                                await m.reply({
-                                    content: `Failed to send your code in for verification: ${phpResponse.data.error}`,
-                                });
-                            }
                         } catch (error) {
                             await m.reply({
                                 content: 'An error occurred while updating the code.',
