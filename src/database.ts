@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { Lock } from 'semaphore-async-await';
 
+import { shuffleArray } from './functions.js';
+
 type Status = 'invalid' | 'not_checked' | 'needs_verified' | 'needs_processed' | 'success';
 
 type CodeDetails = {
@@ -115,79 +117,33 @@ export class Database {
     }
 
     public async claimCodes(limit: number, position: string, credit: string): Promise<string[]> {
-        const codes = Object.entries(this.data.codes).filter(
+        let codes = Object.entries(this.data.codes).filter(
             ([_, { status: s, credit: c }]) => s === 'not_checked' && c === ''
         );
 
-        /*
-        TODO:
-
-        if ($position === 'bottom') {
-    $codes = array_slice(array_keys($notCheckedCodes), -$limit, $limit, true);
-
-} else if ($position === 'middle') {
-    $start = floor(count(array_keys($notCheckedCodes)) / 2) - floor($limit / 2);
-    $codes = array_slice(array_keys($notCheckedCodes), $start, $limit, true);
-
-} else if ($position === 'shuffle') {
-    $keys = array_keys($notCheckedCodes);
-    shuffle($keys);
-    $codes = array_slice($keys, 0, $limit, true);
-
-} else if ($position === 'random') {
-    $keys = array_keys($notCheckedCodes);
-    $randomIndex = array_rand($keys);
-
-    $filteredCodes = [];
-    for ($i = 0; $i < $limit; $i++) {
-        $index = $randomIndex + $i;
-        if ($index >= count($keys)) {
-            $index -= count($keys);
+        switch (position) {
+            case 'bottom':
+                codes = codes.slice(-limit);
+                break;
+            case 'middle':
+                const start = Math.floor(codes.length / 2) - Math.floor(limit / 2);
+                codes = codes.slice(start, start + limit);
+                break;
+            case 'shuffle':
+            case 'random':
+                shuffleArray(codes);
+                codes = codes.slice(0, limit);
+                break;
+            default:
+                codes = codes.slice(0, limit);
         }
-        $filteredCodes[] = $keys[$index];
-    }
-    $codes = $filteredCodes;
 
-} else {
-    $codes = array_slice(array_keys($notCheckedCodes), 0, $limit, true);
-}
-
-foreach ($codes as $code) {
-    $data['codes'][$code]['credit'] = $credit;
-}
-
-file_put_contents($filename, json_encode($data));
-
-$result = [];
-foreach ($codes as $code) {
-    $result[$code] = $data['codes'][$code];
-}
-
-echo json_encode($result);
-         */
-
-        return [];
-    }
-
-    public async updateUsers(users: string[]) {
-        try {
-            await this.lock.acquire();
-
-            let dirty = false;
-            for (const user of users) {
-                for (const [_, details] of Object.entries(this.data.codes)) {
-                    if (details.credit === user) {
-                        details.status = 'invalid';
-                        dirty = true;
-                    }
-                }
-            }
-            if (dirty) {
-                this.flush();
-            }
-        } finally {
-            this.lock.release();
+        for (let [_, details] of codes) {
+            details.credit = credit;
         }
+        this.flush();
+
+        return codes.map(([code, _]) => code);
     }
 
     public async updateCodes(codes: string[], updates: Partial<CodeDetails>) {

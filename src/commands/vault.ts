@@ -42,7 +42,6 @@ export default {
                     .catch((error) => console.error('Could not send DM to the user.', error));
             }
 
-            // TODO: this hits fetch_codes.php and requests some new codes... it also updates the database of codes
             const codes = await database.claimCodes(limit, position, credit);
             if (!Object.keys(codes).length) {
                 return message.channel.send('No codes with status "not_checked" found.');
