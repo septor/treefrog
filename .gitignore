@@ -1,4 +1,7 @@
+dist/
+.idea/
 .env
 node_modules/
 testing/
 config.json
+data/data.json
