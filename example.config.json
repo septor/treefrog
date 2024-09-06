@@ -2,8 +2,6 @@
     "prefix": "!",
     "ownerId": "",
     "vaultManager": "",
-    "updatepoint": "",
-    "fetchpoint": "",
     "allowedChannels": {
         "basecamp": [""],
         "checked": [""],

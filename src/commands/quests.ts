@@ -1,30 +1,34 @@
-const axios = require('axios');
-const config = require('../config.json');
-const { canPostInChannel, canAccessCommand, isInteger, toTitleCase } = require('../functions');
+import axios from 'axios';
+import { Message } from 'discord.js';
 
-module.exports = {
+import { Context } from '../context';
+import { canAccessCommand, canPostInChannel, toTitleCase } from '../functions.js';
+
+export default {
     name: 'quests',
     description: 'Display the required resources to complete a quest line, or a quest.',
     accessLevel: 'low',
-    async execute(message, args) {
-        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/quests.json';
+    async execute(message: Message<boolean>, args: string[], { config, database }: Context) {
+        const url = 'https://raw.githubusercontent.com/septor/treefrog/main/data/quests.json';
 
-        if (!canPostInChannel(this.name, message.channel.id)) {
-            const allowedChannels = config.allowedChannels[this.name].map(channelId => `<#${channelId}>`).join(', ');
-            return message.author.send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
-                .catch(error => console.error('Could not send DM to the user.', error));
+        if (!canPostInChannel(this.name, message.channel.id, config.allowedChannels)) {
+            const allowedChannels = config.allowedChannels[this.name].map((channelId) => `<#${channelId}>`).join(', ');
+            return message.author
+                .send(`\`${this.name}\` can only be used in the following channels: ${allowedChannels}`)
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
-        if (!canAccessCommand(message.author.id, this.accessLevel)) {
-            return message.author.send('You do not have the required access level to use \`${this.name}\`.')
-                .catch(error => console.error('Could not send DM to the user.', error));
+        if (!canAccessCommand(message.author.id, this.accessLevel, config.userAccessLevels)) {
+            return message.author
+                .send('You do not have the required access level to use `${this.name}`.')
+                .catch((error) => console.error('Could not send DM to the user.', error));
         }
 
         let level = null;
-        if (args.length > 1 && isInteger(args[args.length - 1])) {
+        if (args.length > 1 && !isNaN(parseInt(args[args.length - 1]))) {
             level = args.pop();
         }
-        
+
         const questName = args.join(' ').toLowerCase();
 
         try {
@@ -44,7 +48,7 @@ module.exports = {
                 if (!questLevelData) {
                     return message.channel.send(`Level "${level}" not found for quest "${displayName}".`);
                 }
-                
+
                 let resultMessage = `**${displayName} ${level}**\n`;
                 for (const [material, amount] of Object.entries(questLevelData)) {
                     resultMessage += `\t${material}: ${amount}\n`;
@@ -54,6 +58,7 @@ module.exports = {
                 let resultMessage = `**${displayName}**\n`;
                 for (const [lvl, materials] of Object.entries(quests[questName])) {
                     resultMessage += `**\t${lvl}**\n`;
+                    // @ts-ignore TODO: properly type
                     for (const [material, amount] of Object.entries(materials)) {
                         resultMessage += `\t\t${material}: ${amount}\n`;
                     }

@@ -1,0 +1,33 @@
+{
+  "name": "treefrog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --silent=false",
+    "dev": "tsx watch src/index.js",
+    "start": "tsc && node --enable-source-maps dist/index.js",
+    "build": "tsc",
+    "format": "prettier --log-level warn --write \"src/**/*.{jsx,js,ts}\""
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "septor",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "semaphore-async-await": "^1.5.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  }
+}
