@@ -246,5 +246,130 @@
         "Coins": 1000000000,
         "Invincibility Potion": 2500,
         "Golden Touch Potion": 2500
+    },
+    "51": {
+        "Coins": 1100000000,
+        "Gold Coin": 10000,
+        "Ring Fragments": 500
+    },
+    "52": {
+        "Coins": 1200000000,
+        "Necromancer Top": 50,
+        "Necromancer Greaves": 50
+    },
+    "53": {
+        "Coins": 1300000000,
+        "Mystic Robe": 25,
+        "Mystic Bottoms": 25
+    },
+    "54": {
+        "Coins": 1400000000,
+        "Scythe of Demeter": 25,
+        "Restoration Fragment 4": 10
+    },
+    "55": {
+        "Coins": 1500000000,
+        "Gold Coin": 25000,
+        "Ancient Elven Book": 5
+    },
+    "56": {
+        "Coins": 1600000000,
+        "Challenger Boots": 2,
+        "Challenger Gloves": 2
+    },
+    "57": {
+        "Coins": 1700000000,
+        "Drakes Diary": 15,
+        "Elven Grace Potion": 15000
+    },
+    "58": {
+        "Coins": 1800000000,
+        "Ring Fragments": 1000,
+        "Barbarian Top": 50
+    },
+    "59": {
+        "Coins": 1900000000,
+        "Challenger Hat": 2,
+        "Burnt Lobster": 10000
+    },
+    "60": {
+        "Coins": 2000000000,
+        "Gold Coin": 100000,
+        "Eternal Ring": 5
+    },
+    "61": {
+        "Coins": 2000000000,
+        "Large Exp Scroll": 250,
+        "Necklace of Health": 10
+    },
+    "62": {
+        "Coins": 2000000000,
+        "Challenger Legs": 2,
+        "Challenger Top": 2
+    },
+    "63": {
+        "Coins": 2000000000,
+        "Ring Fragments": 2000,
+        "Ring of Renewal": 25
+    },
+    "64": {
+        "Coins": 2000000000,
+        "Primal Gloves": 2,
+        "Primal Boots": 2
+    },
+    "65": {
+        "Coins": 2000000000,
+        "Gold Coin": 500000,
+        "Chefs Hat": 5
+    },
+    "66": {
+        "Coins": 2000000000,
+        "Primal Legs": 2,
+        "Primal Top": 2
+    },
+    "67": {
+        "Coins": 2000000000,
+        "Ring of Life": 20,
+        "Ring of Death": 20
+    },
+    "68": {
+        "Coins": 2000000000,
+        "Ring Fragments": 2500,
+        "Wooden Stick": 5
+    },
+    "69": {
+        "Coins": 2000000000,
+        "Blessed Eternal Sacrifice": 5,
+        "Goblin Cleaver": 50
+    },
+    "70": {
+        "Coins": 2000000000,
+        "Gold Coin": 1000000,
+        "Cognium Ring": 2
+    },
+    "71": {
+        "Coins": 2000000000,
+        "Necklace of Amaran": 1,
+        "Mystic Staff (E)": 1
+    },
+    "72": {
+        "Coins": 2000000000,
+        "Hatchet of the Gods": 10,
+        "Rabbits Foot": 25
+    },
+    "73": {
+        "Coins": 2000000000,
+        "Burnt Shrimp": 25000,
+        "Burnt Snail": 25000
+    },
+    "74": {
+        "Coins": 2000000000,
+        "Ring Fragments": 5000,
+        "Ring of Souls (E)": 1
+    },
+    "75": {
+        "Coins": 2000000000,
+        "Gold Coin": 5000000,
+        "Eternal Berserker Ring": 10
     }
 }
