@@ -478,5 +478,46 @@
         "10": {
             "Cogs": 50000
         }
+    },
+    "beginners luck": {
+        "1": {
+            "Raw Shrimp": 30,
+            "Shrimp": 30
+        },
+        "2": {
+            "Leather": 10,
+            "Birds Nest": 10
+        },
+        "3": {
+            "Attack Potion": 10,
+            "Tomato": 10
+        },
+        "4": {
+            "Feathers": 50,
+            "Common Chest": 1
+        },
+        "5": {
+            "Bones": 50
+        },
+        "6": {
+            "Raw Minnows": 100,
+            "Minnows": 100
+        },
+        "7": {
+            "Iron Boots": 50,
+            "Mushroom": 50
+        },
+        "8": {
+            "Fishing Potion": 50,
+            "Strawberry": 50
+        },
+        "9": {
+            "Oak": 50,
+            "Red Chest": 10
+        },
+        "10": {
+            "Bones": 150,
+            "Milk": 50
+        }
     }
 }
